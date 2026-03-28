@@ -1,0 +1,4302 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-03-22T04:58:26Z",
+    "timestamp_areas_base": "2026-03-21T18:56:14Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 573421153,
+  "lat": 12.9852385,
+  "lon": 77.5967481,
+  "tags": {
+    "addr:city": "Bangalore",
+    "addr:country": "IN",
+    "addr:housename": "Sair Bagh",
+    "addr:housenumber": "19/4",
+    "addr:postcode": "560052",
+    "addr:street": "Cunningham Road",
+    "addr:suburb": "Vasanth Nagar",
+    "level": "3",
+    "name": "Janaagraha",
+    "name:kn": "ಜನಾಗ್ರಹ",
+    "office": "ngo",
+    "operator:wikidata": "Q6150612",
+    "toilets:wheelchair": "no",
+    "website": "https://www.janaagraha.org/",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 1065824760,
+  "lat": 9.0833761,
+  "lon": 78.3574136,
+  "tags": {
+    "addr:city": "Vembar",
+    "addr:country": "IN",
+    "addr:housenumber": "4/124",
+    "addr:locality": "Roachpalayam",
+    "addr:postcode": "628906",
+    "amenity": "Community Development",
+    "check_date": "2010-12-26",
+    "email": "admin@padgom.org",
+    "name": "People's Action for Development (PAD)",
+    "office": "ngo",
+    "phone": "+914638262388",
+    "website": "http://padgom.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 1227379346,
+  "lat": 32.2389354,
+  "lon": 76.3245748,
+  "tags": {
+    "name": "Tibetan Youth Congress",
+    "office": "ngo",
+    "website": "https://www.tibetanyouthcongress.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 1492185606,
+  "lat": 12.9640245,
+  "lon": 77.6407480,
+  "tags": {
+    "addr:housenumber": "3524/1",
+    "addr:postcode": "560008",
+    "addr:street": "1st Cross, Domlur Service Road, Doopanhalli, HAL 2nd Stage, Indiranagar",
+    "name": "Assocham",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 1968359927,
+  "lat": 28.5508000,
+  "lon": 77.2060103,
+  "tags": {
+    "addr:city": "New Delhi",
+    "addr:housenumber": "First Floor, B1/8, Hauz Khas",
+    "addr:place": "Hauz Khas",
+    "addr:postcode": "110016",
+    "building": "office",
+    "designation": "Non profit organization",
+    "level": "1",
+    "name": "Centre for Internet and Society",
+    "office": "ngo",
+    "short_name": "CIS",
+    "smoking": "outside",
+    "website": "https://cis-india.org/",
+    "wheelchair": "no",
+    "wikidata": "Q2801619",
+    "wikimedia_commons": "Category:Centre for Internet and Society (India)",
+    "wikipedia": "en:Centre for Internet and Society (India)"
+  }
+},
+{
+  "type": "node",
+  "id": 1990726913,
+  "lat": 13.0191213,
+  "lon": 80.2569717,
+  "tags": {
+    "name": "Krishnamurthi Foundation of India",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 2018319224,
+  "lat": 9.7449299,
+  "lon": 76.6293678,
+  "tags": {
+    "addr:city": "Kottayam District",
+    "addr:housename": "Public Libray Building",
+    "addr:postcode": "686635",
+    "addr:street": "Palackattumala",
+    "comment": "not so \"young mens club of palackattumala\"",
+    "is_in": "Palackattumala;Kottayam;Kerala;India",
+    "name": "Y.M.C Palackattumala",
+    "name:ml": "യങ്ങ്മെന്‍സ് ക്ളബ് പാലക്കാട്ടുമല",
+    "office": "ngo",
+    "opening_hours": "18:30 - 20:30"
+  }
+},
+{
+  "type": "node",
+  "id": 2116527099,
+  "lat": 12.9742636,
+  "lon": 77.5992958,
+  "tags": {
+    "name": "Rotary Club",
+    "name:kn": "ರೊಟರಿ ಕ್ಲಬ್",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 2304523794,
+  "lat": 12.9808553,
+  "lon": 77.6019476,
+  "tags": {
+    "addr:housenumber": "122/4",
+    "addr:postcode": "560001",
+    "addr:street": "Infantry Road",
+    "name": "Alternative Law Forum",
+    "office": "ngo",
+    "website": "https://altlawforum.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 2345159933,
+  "lat": 16.7601367,
+  "lon": 77.1329612,
+  "tags": {
+    "addr:city": "Yadgir",
+    "addr:housename": "Sri Laxmi Nivas",
+    "addr:housenumber": "Kalike",
+    "addr:postcode": "585201",
+    "addr:street": "Balaji Temple Road",
+    "name": "Kalike",
+    "name:kn": "ಕಲಿಕೆ",
+    "office": "ngo",
+    "opening_hours": "Mo-Sa 10:00-18:00"
+  }
+},
+{
+  "type": "node",
+  "id": 2360192423,
+  "lat": 12.9276400,
+  "lon": 77.5902190,
+  "tags": {
+    "addr:city": "Jayanagar 4th T Block, Bangalore",
+    "addr:district": "Bengaluru Urban",
+    "addr:housename": "IT for change",
+    "addr:housenumber": "#1371",
+    "addr:postcode": "5600041",
+    "addr:street": "31st \"B\" Cross Road",
+    "name": "IT for change",
+    "name:kn": "ಐಟಿ ಫಾರ್ ಚೇಂಜ್",
+    "office": "ngo",
+    "phone": "080-26536890, 080-26654134",
+    "website": "https://itforchange.net"
+  }
+},
+{
+  "type": "node",
+  "id": 2377319203,
+  "lat": 30.1131469,
+  "lon": 78.3069371,
+  "tags": {
+    "name": "Khushi Charity Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 2384936046,
+  "lat": 15.5557892,
+  "lon": 76.4136529,
+  "tags": {
+    "addr:city": "kanakagiri",
+    "addr:postcode": "584119",
+    "fixme": "needs street address details",
+    "landuse": "commercial",
+    "name": "SAMUHA organisation",
+    "office": "ngo",
+    "phone": "(91) 080-42136206",
+    "source": "survey",
+    "website": "https://www.samuha.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 2399776563,
+  "lat": 32.1981925,
+  "lon": 76.3684585,
+  "tags": {
+    "alt_name": "Jagori Rural",
+    "name": "Jagori Grameen",
+    "name:en": "Jagori Rural",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 2414094392,
+  "lat": 12.9157954,
+  "lon": 77.6852217,
+  "tags": {
+    "name": "Azim Premji Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 2564422075,
+  "lat": 27.5742253,
+  "lon": 77.6948040,
+  "tags": {
+    "email": "info@friendsofvrindavan.com",
+    "name": "Friends of Vrindavan",
+    "office": "ngo",
+    "phone": "+91 565 2442771;+91 9412279139",
+    "website": "http://www.friendsofvrindavan.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 2641834219,
+  "lat": 13.0484114,
+  "lon": 77.5796283,
+  "tags": {
+    "addr:city": "Bangalore",
+    "addr:postcode": "560094",
+    "addr:street": "10th Cross",
+    "name": "CSTEP",
+    "name:en": "Center for Study of Science, Technology and Policy",
+    "office": "ngo",
+    "phone": "+91 80 6690 2500",
+    "source": "CSTEP",
+    "website": "https://cstep.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 2952263540,
+  "lat": 16.7517832,
+  "lon": 77.1294962,
+  "tags": {
+    "addr:city": "Yadgir",
+    "name": "Dhan Foundation",
+    "name:kn": "ಧಾನ್ ಫೌಂಡೇಶನ್",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 2956828447,
+  "lat": 12.9592401,
+  "lon": 77.6356973,
+  "tags": {
+    "addr:city": "Bangalore",
+    "addr:postcode": "560071",
+    "name": "Ashoka Innovators For The Public",
+    "office": "ngo",
+    "opening_hours": "09:00-18:00",
+    "smoking": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 2975331589,
+  "lat": 12.9697385,
+  "lon": 77.5362110,
+  "tags": {
+    "addr:city": "Bangalore",
+    "addr:housenumber": "#317/85",
+    "addr:postcode": "560040",
+    "addr:street": "18th Main",
+    "name": "Kalike",
+    "office": "ngo",
+    "opening_hours": "09:00-17:00"
+  }
+},
+{
+  "type": "node",
+  "id": 3080665938,
+  "lat": 12.8318108,
+  "lon": 77.4853264,
+  "tags": {
+    "addr:city": "Bangalore",
+    "building": "school",
+    "name": "E4D Banjarapalya Centre;E4D banjarapalya",
+    "office": "ngo",
+    "smoking": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 3103750284,
+  "lat": 27.1862924,
+  "lon": 78.0025155,
+  "tags": {
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3253165488,
+  "lat": 15.3970213,
+  "lon": 73.8112266,
+  "tags": {
+    "addr:city": "Vasco",
+    "addr:street": "Marmugao",
+    "name": "Indian Res Cross Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3320550355,
+  "lat": 11.9270148,
+  "lon": 79.8331319,
+  "tags": {
+    "addr:city": "Puducherry",
+    "addr:housenumber": "52",
+    "addr:postcode": "605001",
+    "addr:street": "Rue Romain Rolland",
+    "name": "Gratitude Heritage",
+    "office": "ngo",
+    "phone": "0413 222 5029",
+    "tourism_1": "hotel",
+    "website": "https://gratitudeheritage.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 3374353238,
+  "lat": 16.7367827,
+  "lon": 76.7454551,
+  "tags": {
+    "addr:place": "Gogipet",
+    "name": "Training Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3387524693,
+  "lat": 12.0130724,
+  "lon": 79.8011802,
+  "tags": {
+    "addr:city": "Auroville",
+    "addr:postcode": "605111",
+    "addr:street": "Kottakarai",
+    "name": "Auroville Bamboo Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3426275261,
+  "lat": 13.0100716,
+  "lon": 77.6571211,
+  "tags": {
+    "addr:city": "Bangalore",
+    "addr:housename": "No. 621",
+    "addr:street": "OMBR",
+    "name": "Akshara Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3426275262,
+  "lat": 13.0101493,
+  "lon": 77.6571308,
+  "tags": {
+    "addr:housename": "3rd Floor, No. 621",
+    "name": "Pratham Books",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3726039619,
+  "lat": 12.9694953,
+  "lon": 77.6416662,
+  "tags": {
+    "addr:street": "100 Feet Road",
+    "name": "Asha Foundation Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3805428941,
+  "lat": 12.9701863,
+  "lon": 77.6167093,
+  "tags": {
+    "level": "0",
+    "name": "ActionAid",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3900899891,
+  "lat": 14.5017855,
+  "lon": 74.3594937,
+  "tags": {
+    "name": "Panchabhuta Conservation Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3939045870,
+  "lat": 11.9384038,
+  "lon": 79.8301929,
+  "tags": {
+    "addr:city": "Puducherry",
+    "addr:housenumber": "62",
+    "addr:postcode": "605001",
+    "addr:street": "Rue Aurobindo",
+    "name": "Intach Heritage Centre",
+    "office": "ngo",
+    "phone": "0091-413-2 225 991",
+    "website": "http://www.intachpondicherry.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 3939266752,
+  "lat": 11.9477468,
+  "lon": 79.8362665,
+  "tags": {
+    "addr:city": "Puducherry",
+    "addr:housenumber": "No:10",
+    "addr:postcode": "605012",
+    "addr:street": "Pillaiyar Koil Street, Vaithikuppam",
+    "name": "CIRC-PYAR TRUST",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3942856558,
+  "lat": 11.9383329,
+  "lon": 79.8336523,
+  "tags": {
+    "name": "world union",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 3942890998,
+  "lat": 11.9273109,
+  "lon": 79.8320422,
+  "tags": {
+    "addr:city": "Puducherry",
+    "addr:postcode": "605001",
+    "addr:street": "Rue Labourdonnais",
+    "name": "Elegance - Reflection of Graneur",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 4275690250,
+  "lat": 12.9790088,
+  "lon": 77.6363845,
+  "tags": {
+    "addr:housenumber": "235",
+    "addr:street": "13th Cross",
+    "name": "Amnesty International",
+    "office": "ngo",
+    "website": "https://www.amnesty.org.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 4315529536,
+  "lat": 12.9696627,
+  "lon": 77.6365282,
+  "tags": {
+    "name": "Plong",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 4350001284,
+  "lat": 13.0041354,
+  "lon": 77.5623508,
+  "tags": {
+    "addr:city": "Bengaluru",
+    "addr:country": "IN",
+    "addr:housenumber": "16/2",
+    "addr:place": "Malleshwaram",
+    "addr:postcode": "560003",
+    "addr:street": "11th Main Road",
+    "description": "ISPF is a non-profit trust focused on promoting Innovation and Science, especially amongst children. ISPF’s current focus is creating experience-based learning opportunities where science can be learnt using hands-on, interactive experiences.",
+    "email": "contact@ispf.in",
+    "name": "Innovation and Science Promotion Foundation",
+    "name_1": "ISPF",
+    "office": "ngo",
+    "opening_hours": "08:30-18:00",
+    "phone": "+9199028 74525",
+    "smoking": "no",
+    "website": "https://ispf.in"
+  }
+},
+{
+  "type": "node",
+  "id": 4472250084,
+  "lat": 32.2077181,
+  "lon": 76.3276739,
+  "tags": {
+    "addr:city": "Dharamsala",
+    "addr:postcode": "176215",
+    "addr:street": "Shyam Nagar Road",
+    "name": "The Himachal and Punjab Gorkha Association",
+    "office": "ngo",
+    "phone": "9418607458",
+    "website": "hpgabhagsu.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 4472516796,
+  "lat": 12.9812972,
+  "lon": 77.6476388,
+  "tags": {
+    "name": "Institute For Cultural Research and Action",
+    "name:en": "Institute For Cultural Research and Action",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 4693434845,
+  "lat": 12.9672528,
+  "lon": 79.1390140,
+  "tags": {
+    "name": "Worth trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 4749166707,
+  "lat": 13.0820347,
+  "lon": 79.6876325,
+  "tags": {
+    "name": "Victory Youth Association - VICYA",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5013716368,
+  "lat": 34.1653759,
+  "lon": 77.5830251,
+  "tags": {
+    "name": "WWF for nature india",
+    "name:en": "WWF for nature india",
+    "office": "ngo",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 5037460625,
+  "lat": 21.5060110,
+  "lon": 70.4680320,
+  "tags": {
+    "name": "Volunteering Opportunities",
+    "name:en": "Volunteering Opportunities",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5091763041,
+  "lat": 28.5626549,
+  "lon": 77.2134745,
+  "tags": {
+    "name": "Chetna NGO",
+    "name:km": "អង្គការក្រៅរដ្ឋាភិបាល ចេតនា",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5229561308,
+  "lat": 11.9415408,
+  "lon": 79.8095924,
+  "tags": {
+    "name": "SIOL quiz club",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5251291621,
+  "lat": 19.2859078,
+  "lon": 72.8821789,
+  "tags": {
+    "addr:housenumber": "22",
+    "addr:postcode": "401107",
+    "addr:street": "Shanti Vidya Nagri Road",
+    "name:en": "Aadhar Cc",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5292943852,
+  "lat": 11.9406625,
+  "lon": 79.8260594,
+  "tags": {
+    "name": "Andhra Maha Sabha",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5385183325,
+  "lat": 24.6324145,
+  "lon": 73.6369443,
+  "tags": {
+    "addr:postcode": "313011",
+    "name": "एनिमल ऐड",
+    "name:en": "Animal Aid",
+    "office": "ngo",
+    "opening_hours": "Mo-Su 09:00-18:00",
+    "phone": "9950531639",
+    "website": "https://www.animalaidunlimited.org"
+  }
+},
+{
+  "type": "node",
+  "id": 5398993690,
+  "lat": 11.9632958,
+  "lon": 79.8180455,
+  "tags": {
+    "name": "Nezhavalar nagar Youth welfare association",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5432838235,
+  "lat": 27.2335719,
+  "lon": 77.8890070,
+  "tags": {
+    "name:en": "Wildlife SOS - Volunteers House",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5469029529,
+  "lat": 17.4359743,
+  "lon": 78.3604038,
+  "tags": {
+    "addr:city": "Beside Centre for Good Governance, Greenlands colony, Gachibowli 'X'Roads, Sherilingampally, Rangareddy Dt.,",
+    "addr:housenumber": "Sy. No. 91",
+    "addr:postcode": "Hyderabad – 500032",
+    "addr:street": "Nehru Outer Ring Road",
+    "description": "స్వేచ్ఛా సాఫ్ట్‌వేర్‌ ఉద్యమం వ్యాప్తికై పని చేస్తున్న లాభాపేక్ష లేని సంస్థ. Nonprofit organization working to build free software movement in Telugu states.",
+    "designation": "FSMI",
+    "email": "contact@swecha.org",
+    "name": "Swecha Office",
+    "name:te": "స్వేచ్ఛ కార్యాలయం",
+    "office": "ngo",
+    "opening_hours": "24/7",
+    "phone": "04023001263",
+    "smoking": "no",
+    "toilets": "yes",
+    "website": "www.swecha.org",
+    "wheelchair": "no",
+    "wikidata": "Q19898553",
+    "wikimedia_commons": "Category:Swecha",
+    "wikipedia": "en:Swecha"
+  }
+},
+{
+  "type": "node",
+  "id": 5522032221,
+  "lat": 28.6418902,
+  "lon": 77.2152603,
+  "tags": {
+    "addr:city": "New Delhi",
+    "addr:housenumber": "2nd Floor DDA Community Centre",
+    "addr:postcode": "110055",
+    "addr:street": "Gali Chandi Wali",
+    "name": "Salaam Baalak Trust Office",
+    "office": "ngo",
+    "website": "https://www.salaambaalaktrust.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5525077111,
+  "lat": 19.5024662,
+  "lon": 73.0298258,
+  "tags": {
+    "addr:city": "Near Vajreshwari",
+    "addr:district": "Palghar",
+    "addr:housenumber": "HN 443",
+    "addr:postcode": "401204",
+    "addr:street": "At Kelthan Gorad Raod Tal Wada, Dist Palghar",
+    "name": "Learning Space Foundation",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 09:00-17:00",
+    "phone": "+919860132638",
+    "website": "https://www.learningspace.org.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 5585526135,
+  "lat": 10.8308259,
+  "lon": 78.6987093,
+  "tags": {
+    "name": "No food waste facility",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5604053622,
+  "lat": 12.9416432,
+  "lon": 77.5669962,
+  "tags": {
+    "addr:street": "Bull Temple Road, 6thMain Road",
+    "name": "Anantha shishu nivasa",
+    "name:en": "Anantha sishu nivasa",
+    "office": "ngo",
+    "opening_hours": "Mo-Sa 11:30-17:30"
+  }
+},
+{
+  "type": "node",
+  "id": 5609346222,
+  "lat": 12.9641358,
+  "lon": 77.6472619,
+  "tags": {
+    "name": "Namma mane",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5609365722,
+  "lat": 13.0256565,
+  "lon": 77.6189083,
+  "tags": {
+    "name": "YMCA dream home",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5616719721,
+  "lat": 13.0679365,
+  "lon": 77.6426520,
+  "tags": {
+    "name": "Kirubai Project",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5616737024,
+  "lat": 13.0677182,
+  "lon": 77.6426191,
+  "tags": {
+    "name": "Santhosha Samsara",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5616996521,
+  "lat": 13.0652996,
+  "lon": 77.6474340,
+  "tags": {
+    "name": "The refuge foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5619006321,
+  "lat": 13.0713862,
+  "lon": 77.6563400,
+  "tags": {
+    "name": "Home of Faith",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5625995921,
+  "lat": 13.0430746,
+  "lon": 77.6081198,
+  "tags": {
+    "name": "Living Hope",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5632289725,
+  "lat": 12.9906539,
+  "lon": 77.6871725,
+  "tags": {
+    "name": "Sukanya ghar- SATH",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5632413921,
+  "lat": 13.0372009,
+  "lon": 77.7121393,
+  "tags": {
+    "name": "Shishu Mandir",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5632636923,
+  "lat": 12.9800770,
+  "lon": 77.7485727,
+  "tags": {
+    "name": "Abhayadhama",
+    "name:kn": "ಅಭಯಧಾಮ",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5640992524,
+  "lat": 16.4629946,
+  "lon": 80.6174305,
+  "tags": {
+    "name": "Telugu desam karyalayam",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5669474776,
+  "lat": 25.8525428,
+  "lon": 85.7733427,
+  "tags": {
+    "addr:city": "samstipur",
+    "addr:housenumber": "1st flor",
+    "addr:postcode": "848101",
+    "addr:street": "near shiva hero show room",
+    "name": "Quest Alliance",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5774539941,
+  "lat": 28.5591636,
+  "lon": 77.2402846,
+  "tags": {
+    "name": "MSF India",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5890165453,
+  "lat": 19.0612233,
+  "lon": 72.8423376,
+  "tags": {
+    "addr:city": "Mumbai",
+    "addr:housenumber": "272",
+    "addr:postcode": "400051",
+    "addr:street": "Municipal Tenementsm Shivajinagar, Bandra",
+    "full_name": "Partners for Urban Knowledge Action and Research",
+    "name": "Pukar",
+    "office": "ngo",
+    "website": "https://pukar.org.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 5892458785,
+  "lat": 12.9876045,
+  "lon": 80.2542499,
+  "tags": {
+    "addr:housenumber": "H42/1",
+    "addr:postcode": "600041",
+    "addr:street": "Appucoloney,thiruvamayur",
+    "email": "spipanchayat@gmail.com",
+    "name": "சட்ட பஞ்சாயத்து இயக்கம்",
+    "name:en": "satta panchayat Iyakkam",
+    "office": "ngo",
+    "opening_hours": "Mo-Su 10:00-17:00",
+    "phone": "+9176671 00100",
+    "website": "https://www.sattapanchayat.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 5960751786,
+  "lat": 28.5308157,
+  "lon": 77.2179244,
+  "tags": {
+    "name": "Akhil Bhartiya smt Leelawati Manila nal Jafri kya samaan Kalyan samiti",
+    "office": "ngo",
+    "website": "http://www.ableelavatisks.org"
+  }
+},
+{
+  "type": "node",
+  "id": 5997444092,
+  "lat": 22.6543316,
+  "lon": 88.4454929,
+  "tags": {
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5997444093,
+  "lat": 22.6541558,
+  "lon": 88.4454875,
+  "tags": {
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 5997501585,
+  "lat": 22.6575831,
+  "lon": 88.4458615,
+  "tags": {
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6087170485,
+  "lat": 17.4267187,
+  "lon": 78.5400850,
+  "tags": {
+    "name": "centre for sustainable agriculture (CSA)",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6123737151,
+  "lat": 19.9343229,
+  "lon": 79.8931861,
+  "tags": {
+    "name": "Krantijyoti Savitribai Phule Bahuddeshiya Sanstha",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6265425785,
+  "lat": 9.9795951,
+  "lon": 78.1622237,
+  "tags": {
+    "name:en": "Antenna Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6271394485,
+  "lat": 9.9794141,
+  "lon": 78.1621976,
+  "tags": {
+    "name:en": "Antenna trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6284673523,
+  "lat": 28.5745089,
+  "lon": 77.2391962,
+  "tags": {
+    "addr:housenumber": "B-94",
+    "addr:place": "Lajpat Nagar I",
+    "email": "info@youthallianceofindia.org",
+    "level": "2",
+    "name": "Youth Alliance",
+    "office": "ngo",
+    "phone": "+91-11-4039-2450",
+    "website": "https://www.youthallianceofindia.org"
+  }
+},
+{
+  "type": "node",
+  "id": 6295710682,
+  "lat": 19.2856199,
+  "lon": 84.7283037,
+  "tags": {
+    "name": "Gram Vikas",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6320110585,
+  "lat": 10.5139064,
+  "lon": 76.2173394,
+  "tags": {
+    "addr:postcode": "680001",
+    "addr:street": "TB Road",
+    "name": "Indian Medical Association, Thrissur Branch",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 09:00-18:00"
+  }
+},
+{
+  "type": "node",
+  "id": 6367890802,
+  "lat": 10.9615853,
+  "lon": 78.0806211,
+  "tags": {
+    "name:en": "PWD Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6368484259,
+  "lat": 31.0928175,
+  "lon": 77.1719589,
+  "tags": {
+    "addr:city": "Shimla",
+    "addr:postcode": "171001",
+    "addr:street": "Dyerton Estate, Beerkhana",
+    "email": "mail@doers.ngo",
+    "name": "Doers",
+    "office": "ngo",
+    "opening_hours": "Mo-Sa 10:00-18:00",
+    "phone": "+91 177 2674939",
+    "website": "https://www.doers.ngo/"
+  }
+},
+{
+  "type": "node",
+  "id": 6395280685,
+  "lat": 24.6158088,
+  "lon": 73.6869184,
+  "tags": {
+    "name:en": "Udaipur Happiness Project",
+    "office": "ngo",
+    "opening_hours": "Mo-Su 11:00-18:00"
+  }
+},
+{
+  "type": "node",
+  "id": 6440377300,
+  "lat": 13.0074470,
+  "lon": 77.6232635,
+  "tags": {
+    "name": "Association of People with Disability",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6443796289,
+  "lat": 13.4019167,
+  "lon": 78.0499950,
+  "tags": {
+    "name": "Savithri Bai Phoole Educatiknal Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6499093185,
+  "lat": 19.1935806,
+  "lon": 72.9855997,
+  "tags": {
+    "name:en": "Enviro Vigil",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6586189079,
+  "lat": 8.5158413,
+  "lon": 76.9525963,
+  "tags": {
+    "addr:city": "Nanthancode",
+    "addr:postcode": "695003",
+    "addr:street": "Watts Lane",
+    "name": "Space Kerala",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 10:00-17:00",
+    "website": "http://space-kerala.org"
+  }
+},
+{
+  "type": "node",
+  "id": 6688394990,
+  "lat": 13.0913122,
+  "lon": 80.2131224,
+  "tags": {
+    "addr:city": "Anna Nagar, Chennai",
+    "addr:housenumber": "113",
+    "addr:postcode": "600040",
+    "addr:street": "6th Main Road",
+    "description": "A NGO that provides legal help for Women. Visit https://msum.in",
+    "name": "Magalir Satta Uthavi Maiyam (MSUM)",
+    "name:ta": "மகளிர் சட்ட உதவி மையம்",
+    "office": "ngo",
+    "website": "https://msum.in"
+  }
+},
+{
+  "type": "node",
+  "id": 6698608889,
+  "lat": 24.5841358,
+  "lon": 73.6866667,
+  "tags": {
+    "name": "Kolam",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6698608890,
+  "lat": 24.5841103,
+  "lon": 73.6866725,
+  "tags": {
+    "name": "Kolam",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6698618385,
+  "lat": 24.5842430,
+  "lon": 73.6866086,
+  "tags": {
+    "name": "Kolam",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6763252487,
+  "lat": 12.9879330,
+  "lon": 80.2580053,
+  "tags": {
+    "addr:housenumber": "27",
+    "addr:street": "3rd East Street",
+    "name:en": "mozhi trust",
+    "office": "ngo",
+    "phone": "009104424424166"
+  }
+},
+{
+  "type": "node",
+  "id": 6811740597,
+  "lat": 10.4702688,
+  "lon": 76.2472156,
+  "tags": {
+    "name": "River Research Center",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 6886594854,
+  "lat": 12.9843552,
+  "lon": 77.5787035,
+  "tags": {
+    "addr:city": "Bengaluru",
+    "addr:district": "BENGALURU URBAN",
+    "addr:full": "Red Cross Bhavan, 326, Ist Floor, Race Course Road, Bengaluru",
+    "addr:postcode": "560001",
+    "addr:state": "Karnataka",
+    "amenity": "blood_bank",
+    "contact:mobile": "9902859859",
+    "contact:phone": "8022268435",
+    "name": "Indian Red Cross Society - Karnataka Red Cross Blood Bank",
+    "office": "ngo",
+    "opening_hours": "24/7",
+    "operator:type": "ngo",
+    "source": "OpenGovernmentData",
+    "website": "https://www.redcrosskarnataka.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 7035824373,
+  "lat": 10.1982076,
+  "lon": 76.9601885,
+  "tags": {
+    "name": "Vana Samrakshana Samidi",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7053508462,
+  "lat": 8.5159164,
+  "lon": 76.9547721,
+  "tags": {
+    "name": "Catering Assosiation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7057741986,
+  "lat": 13.0713047,
+  "lon": 80.2507551,
+  "tags": {
+    "addr:housenumber": "14",
+    "addr:street": "Venugopal Avenue",
+    "email": "info@damnienfoundation.in",
+    "name:en": "Damien Foundation India Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7111770479,
+  "lat": 10.5643075,
+  "lon": 76.0631014,
+  "tags": {
+    "name": "akshaya centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7170011249,
+  "lat": 33.9286512,
+  "lon": 75.1133083,
+  "tags": {
+    "addr:street": "Old Bazar, Tral",
+    "name": "Ikhlas Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7176651803,
+  "lat": 12.9746323,
+  "lon": 77.5472612,
+  "tags": {
+    "addr:city": "Bengaluru",
+    "addr:country": "IN",
+    "addr:housenumber": "2/106",
+    "addr:postcode": "560040",
+    "addr:street": "Chord Road",
+    "addr:suburb": "Vijayanagar",
+    "email": "president@kassia.co.in",
+    "name": "Kassia",
+    "office": "ngo",
+    "phone": "080 – 2335 3250",
+    "website": "https://kassia.co.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 7182965885,
+  "lat": 8.4954450,
+  "lon": 76.9521522,
+  "tags": {
+    "name": "Spato And Dakf Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7184401786,
+  "lat": 8.4896175,
+  "lon": 76.9435533,
+  "tags": {
+    "name": "Kssp",
+    "office": "ngo",
+    "survey:date": "2020-02-04"
+  }
+},
+{
+  "type": "node",
+  "id": 7227069414,
+  "lat": 28.5674127,
+  "lon": 77.2614742,
+  "tags": {
+    "name": "Kailash Satyarthi Children's Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7331034185,
+  "lat": 9.9845430,
+  "lon": 76.3057277,
+  "tags": {
+    "addr:street": "Thammanam Pulleppady Road",
+    "name": "Malanadu Media Hub",
+    "office": "ngo",
+    "opening_hours": "24/7",
+    "website": "https://malanadunews.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 7391407058,
+  "lat": 10.6402667,
+  "lon": 76.2101343,
+  "tags": {
+    "name": "Green Army Training Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7457790496,
+  "lat": 9.3734003,
+  "lon": 76.5633111,
+  "tags": {
+    "name": "Sevabharathi Thiruvalla",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7485093044,
+  "lat": 9.2183331,
+  "lon": 76.7768316,
+  "tags": {
+    "addr:housenumber": "library junction",
+    "name": "Nair Service Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7694938486,
+  "lat": 30.3755336,
+  "lon": 78.0829154,
+  "tags": {
+    "addr:street": "Rajpur-Mussoorie Road",
+    "name": "OR trust of geolscience",
+    "name:en": "OR trust of geolsciences",
+    "office": "ngo",
+    "opening_hours": "Mo-Sa 10:00-13:00",
+    "phone": "98970 20782"
+  }
+},
+{
+  "type": "node",
+  "id": 7973171016,
+  "lat": 25.6568305,
+  "lon": 94.0984124,
+  "tags": {
+    "name": "ASU Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 7973171017,
+  "lat": 25.6711878,
+  "lon": 94.1077957,
+  "tags": {
+    "name": "NSF Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8051583470,
+  "lat": 28.5898375,
+  "lon": 77.2258910,
+  "tags": {
+    "check_date": "2026-03-14",
+    "name": "National Institute of Urban Affairs",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8219719307,
+  "lat": 13.0317124,
+  "lon": 80.2565933,
+  "tags": {
+    "addr:city": "Chennai",
+    "addr:housenumber": "52",
+    "addr:postcode": "600018",
+    "addr:street": "CP Ramaswamy Road",
+    "description": "Sunaadalahari, musical wing of Indira Ranganathan Trust is a charitable organisation with a mission to promote art forms and its artists.",
+    "email": "info@sunaadalahari.org",
+    "name": "Sunaadalahari",
+    "office": "ngo",
+    "phone": "+91 93445 35941",
+    "website": "https://www.sunaadalahari.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 8226642806,
+  "lat": 9.7240791,
+  "lon": 76.3221304,
+  "tags": {
+    "addr:city": "Pattanakkad Vayalar",
+    "addr:postcode": "688531",
+    "addr:street": "vayalar road",
+    "name": "Neelimangalam Coir Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8308429191,
+  "lat": 28.5674950,
+  "lon": 77.2490160,
+  "tags": {
+    "addr:city": "New Delhi",
+    "addr:housenumber": "134, 2nd & 3rd floor",
+    "addr:postcode": "110024",
+    "addr:street": "Lajpat Nagar 2",
+    "name": "Feminist Approach to Technology",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 09:30-17:30",
+    "opening_hours:covid19": "restricted",
+    "phone": "+91-11-41004951",
+    "website": "https://fat-net.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 8363927147,
+  "lat": 11.0784293,
+  "lon": 76.5714093,
+  "tags": {
+    "addr:postcode": "678582",
+    "addr:street": "Seenkara, Attappadi, Kerala",
+    "name": "Asso",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8420048501,
+  "lat": 9.0835225,
+  "lon": 76.7961877,
+  "tags": {
+    "addr:city": "pattazy",
+    "addr:postcode": "691522",
+    "addr:street": "earathuvadakku",
+    "name": "Sewagram Gramakendram",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8661319337,
+  "lat": 11.9213426,
+  "lon": 79.8253546,
+  "tags": {
+    "addr:housenumber": "groceries",
+    "name": "Volontariat",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8894621503,
+  "lat": 11.8421768,
+  "lon": 75.9208864,
+  "tags": {
+    "name": "Wayanad Social Service Society Building",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8918801342,
+  "lat": 11.5002454,
+  "lon": 75.7931957,
+  "tags": {
+    "name": "Akshaya Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8918958129,
+  "lat": 13.6385170,
+  "lon": 77.5225264,
+  "tags": {
+    "name": "Outreach",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 8977380275,
+  "lat": 8.3773771,
+  "lon": 77.0534967,
+  "tags": {
+    "name": "Gramaseva Kendram, Bhaskernagar",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9002235227,
+  "lat": 34.1047113,
+  "lon": 74.8223721,
+  "tags": {
+    "name": "Daarul-Atta",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9019093269,
+  "lat": 10.4419244,
+  "lon": 76.2880048,
+  "tags": {
+    "name": "Vattanathra Nair Service Society Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9026438058,
+  "lat": 10.4399813,
+  "lon": 76.2951008,
+  "tags": {
+    "name": "Pookode Nair Service Society Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9055318241,
+  "lat": 22.5352110,
+  "lon": 88.3898699,
+  "tags": {
+    "name": "Children of Topsia",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9107726026,
+  "lat": 10.4322282,
+  "lon": 76.2903660,
+  "tags": {
+    "name": "Khadi Board Office (SC Self Employment Scheme)",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9110507305,
+  "lat": 17.3369697,
+  "lon": 78.5714825,
+  "tags": {
+    "addr:city": "Vanasthalipuram",
+    "addr:postcode": "500070",
+    "addr:street": "National highway 65",
+    "email": "aiilsghyd@gmail.com",
+    "name": "ALL INDIA INSTITUTE OF LOCAL SELF GOVERNMENT",
+    "office": "ngo",
+    "opening_hours": "Mo-Su 10:00-22:00",
+    "website": "https://www.aiilsg.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 9111400913,
+  "lat": 10.4364636,
+  "lon": 76.2711446,
+  "tags": {
+    "name": "Sreekrishnapuram Nair Service Society Mandiram",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9131883217,
+  "lat": 34.1795995,
+  "lon": 74.8073966,
+  "tags": {
+    "name": "Al-Khairaat Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9196854832,
+  "lat": 29.2170444,
+  "lon": 79.5443640,
+  "tags": {
+    "name": "National Association for the Blind (NAB), Uttarakhand",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9310768217,
+  "lat": 11.8332825,
+  "lon": 75.9703746,
+  "tags": {
+    "name": "NSS room- Gec, wayanad (168&263)",
+    "office": "ngo",
+    "survey:date": "2021-12-04"
+  }
+},
+{
+  "type": "node",
+  "id": 9352091627,
+  "lat": 10.0814656,
+  "lon": 76.5113913,
+  "tags": {
+    "addr:street": "Pulluvazhi",
+    "name": "Mahila Samajam",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9360052318,
+  "lat": 13.0983220,
+  "lon": 80.2917114,
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:street": "Vadamaracoir Street",
+    "name": "மனித நேய மக்கள் கட்சி தலைமை அலுவலகம்",
+    "name:en": "Manitha Neya Makkal Katchi Head Office",
+    "office": "ngo",
+    "opening_hours": "24/7",
+    "phone": "044-25247824",
+    "website": "https://www.mmkinfo.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 9437014126,
+  "lat": 22.6463388,
+  "lon": 75.8889452,
+  "tags": {
+    "name": "KGNM Trust, Indore",
+    "office": "ngo",
+    "website": "https://kgnmtrust.org"
+  }
+},
+{
+  "type": "node",
+  "id": 9654351744,
+  "lat": 12.9644307,
+  "lon": 77.6151761,
+  "tags": {
+    "name": "A Hundred Hands",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9761019355,
+  "lat": 26.2544722,
+  "lon": 88.1888812,
+  "tags": {
+    "addr:city": "Islampur",
+    "addr:postcode": "733202",
+    "name": "Islampur Ramkrishnapally Rural Welfare Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9765319327,
+  "lat": 12.1109680,
+  "lon": 75.2186197,
+  "tags": {
+    "name": "Kerala Poorakkali Acadamy",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9819044627,
+  "lat": 19.2079554,
+  "lon": 72.9534128,
+  "tags": {
+    "addr:city": "Thane (West)",
+    "addr:housenumber": "Gyanda CHS",
+    "addr:place": "Savarkar Nagar",
+    "addr:postcode": "400606",
+    "name": "Aarna Foundation NGO",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9849510364,
+  "lat": 24.5186014,
+  "lon": 73.3610604,
+  "tags": {
+    "name": "Gandhi Manav Kalyan Society",
+    "office": "ngo",
+    "phone": "+919413318952",
+    "website": "https://www.gmks.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 9901485057,
+  "lat": 9.6911153,
+  "lon": 76.3390471,
+  "tags": {
+    "name": "KSFE Cherthala Evening Branch",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 9939052117,
+  "lat": 13.0402209,
+  "lon": 80.2571822,
+  "tags": {
+    "addr:housenumber": "322",
+    "addr:street": "Ambujammal Street",
+    "name:en": "Srinivasa gandhi nilayam",
+    "office": "ngo",
+    "opening_hours": "Mo-Su 11:00-16:00"
+  }
+},
+{
+  "type": "node",
+  "id": 9989904667,
+  "lat": 24.5987945,
+  "lon": 73.7086533,
+  "tags": {
+    "addr:city": "Udaipur",
+    "addr:housenumber": "19",
+    "addr:postcode": "313011",
+    "addr:street": "Kamla Nagar, Behind M & S Complex New Bhupalpura, 100 Ft Shobhagpura Road",
+    "name": "Gandhi Manav Kalyan Society",
+    "office": "ngo",
+    "phone": "+919166778628",
+    "website": "https://www.gmks.in"
+  }
+},
+{
+  "type": "node",
+  "id": 9995919872,
+  "lat": 9.6782200,
+  "lon": 76.3407701,
+  "tags": {
+    "name": "KSTA Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10239633214,
+  "lat": 22.6735345,
+  "lon": 75.8778720,
+  "tags": {
+    "addr:city": "Indore",
+    "addr:housenumber": "74",
+    "addr:postcode": "452001",
+    "addr:street": "Krishnodaya Nagar",
+    "air_conditioning": "no",
+    "name": "Dhas Gramin Vikas Kendra",
+    "office": "ngo",
+    "smoking": "no",
+    "website": "https://dhasgraminvikaskendra.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 10248417357,
+  "lat": 25.7051540,
+  "lon": 74.1067524,
+  "tags": {
+    "name": "School for Democracy",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10539820145,
+  "lat": 29.9370960,
+  "lon": 78.0786320,
+  "tags": {
+    "name": "NEVER SAY NO FORUM",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 09:00-17:00",
+    "phone": "+91 7217217046",
+    "website": "https://www.nvrsayno.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 10605409406,
+  "lat": 22.4914567,
+  "lon": 88.3872785,
+  "tags": {
+    "addr:housenumber": "16",
+    "addr:postcode": "700075",
+    "addr:street": "Lake East 4th Road",
+    "email": "abhinnabangla@gmail.com",
+    "name": "Abhinna Bangla",
+    "office": "ngo",
+    "opening_hours": "24/7",
+    "phone": "+919930794022",
+    "website": "http://www.abhinnabangla.com"
+  }
+},
+{
+  "type": "node",
+  "id": 10635436105,
+  "lat": 19.7530949,
+  "lon": 76.6759126,
+  "tags": {
+    "name": "CHOUDHARNI BK",
+    "name:en": "Choudharni BK",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10681246605,
+  "lat": 11.0402440,
+  "lon": 76.9361898,
+  "tags": {
+    "addr:postcode": "641030",
+    "email": "contact@transmom.in",
+    "name:en": "TransMom foundation",
+    "office": "ngo",
+    "website": "http://transmom.in"
+  }
+},
+{
+  "type": "node",
+  "id": 10722611566,
+  "lat": 18.6069939,
+  "lon": 73.7344608,
+  "tags": {
+    "addr:city": "Hinjawadi",
+    "addr:housenumber": "S.No.28/1/14 Star city Mulshi, Pune, Maharashtra 411057",
+    "addr:street": "Marunji Road",
+    "name": "Dustypaws Organisation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10722659137,
+  "lat": 18.5885427,
+  "lon": 73.7372499,
+  "tags": {
+    "addr:city": "Hinjawadi",
+    "addr:housenumber": "HPQP+8XH, Hinjewadi Phase 1 Rd, Phase 1, Hinjewadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Maharashtra 411057",
+    "addr:postcode": "411057",
+    "addr:street": "Hinjawadi Phase 1 road",
+    "name": "Telepathic Animal Communicator - Goonj",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10722685162,
+  "lat": 18.6074587,
+  "lon": 73.7227240,
+  "tags": {
+    "addr:city": "Hinjawadi",
+    "addr:housenumber": "Marunji Rd, near WaterPump House, Phase 1, Hinjewadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Maharashtra 411057",
+    "addr:street": "Marunji Road",
+    "name": "Progressive Welfare Association",
+    "office": "ngo",
+    "phone": "09075094449"
+  }
+},
+{
+  "type": "node",
+  "id": 10722696330,
+  "lat": 18.6122852,
+  "lon": 73.7161996,
+  "tags": {
+    "addr:city": "मारुंजी",
+    "addr:housenumber": "JP68+XC4, Marunji Rd, Marunji Village, Hinjawadi, Marunji, Maharashtra 411033",
+    "addr:postcode": "411057",
+    "addr:street": "Marunji Road",
+    "name": "Buchdepatil Nagar Small",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10722696734,
+  "lat": 18.6131597,
+  "lon": 73.7123713,
+  "tags": {
+    "addr:city": "Pune",
+    "addr:housenumber": "Marunji Village, Hinjawadi, Marunji, Maharashtra 411033",
+    "addr:postcode": "411033",
+    "addr:street": "Marunji Road",
+    "name": "Navkshitij",
+    "office": "ngo",
+    "phone": "09850092642",
+    "website": "https://www.navkshitij.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 10722698909,
+  "lat": 18.5967361,
+  "lon": 73.7635202,
+  "tags": {
+    "addr:housenumber": "Waghmare Rd, near Datta Mandir, behind Madhupushpa Society, Shankar Kalat Nagar, Wakad, Pune, Maharashtra 411057",
+    "addr:street": "Datta Mandir Road",
+    "name": "A Ray Of Hope Charitable Trust",
+    "office": "ngo",
+    "phone": "09730255167",
+    "website": "https://arayofhope.org.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 10722702751,
+  "lat": 18.5937959,
+  "lon": 73.7570326,
+  "tags": {
+    "addr:housenumber": "411",
+    "addr:street": "411, The Address Commercia Mumbai-Bangalore Highway, Near Hinjewadi, Wakad Flyover, Wakad, Pune, Maharashtra 411057",
+    "name": "Light Up The Soul Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10722704909,
+  "lat": 18.6011365,
+  "lon": 73.7642864,
+  "tags": {
+    "addr:city": "Pune",
+    "addr:housenumber": "Office No.38, First Floor, Omega Commercial Complex, Wakad, Pune, Maharashtra 411057",
+    "addr:street": "Datta Mandir Road",
+    "name": "Resourceful Education Foundation",
+    "office": "ngo",
+    "phone": "07499918171",
+    "website": "http://resourcefuleducationfoundation.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 10750342306,
+  "lat": 28.5311592,
+  "lon": 77.1493220,
+  "tags": {
+    "name": "SOS Children's villages",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10798488030,
+  "lat": 12.0940559,
+  "lon": 75.3498472,
+  "tags": {
+    "name": "Sunni Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10798488032,
+  "lat": 12.0945509,
+  "lon": 75.3494451,
+  "tags": {
+    "name": "Islamic Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10864035906,
+  "lat": 22.6053072,
+  "lon": 88.3848066,
+  "tags": {
+    "addr:postcode": "700037",
+    "addr:street": "Belgachia Road",
+    "name": "Belgachia Eid Milan Committe",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10864036605,
+  "lat": 22.6056007,
+  "lon": 88.3849290,
+  "tags": {
+    "addr:postcode": "700037",
+    "addr:street": "Belgachia Road",
+    "name": "Three Star Sports Club",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 10932044475,
+  "lat": 23.8124726,
+  "lon": 86.4384900,
+  "tags": {
+    "addr:city": "Dhanbad",
+    "addr:housenumber": "i2h Tower (Institute Innovation Hub),",
+    "addr:postcode": "826004",
+    "addr:street": "IIT(ISM) Dhanbad",
+    "name": "TECHNOLOGY INNOVATION IN EXPLORATION AND MINING FOUNDATION (TEXMiN)",
+    "office": "ngo",
+    "opening_hours": "Mo - Fri 09:30 AM - 06:30 PM",
+    "website": "https://texmin.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 10965458308,
+  "lat": 13.0132336,
+  "lon": 77.5688177,
+  "tags": {
+    "name": "Bengaluru Science & Technology cluster",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 09:00-17:00",
+    "website": "https://www.bestkc.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 11098852505,
+  "lat": 18.9973677,
+  "lon": 73.1222208,
+  "tags": {
+    "addr:postcode": "410206",
+    "addr:street": "Road no. 16",
+    "name:en": "Vision Educare Aacademy",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11166386195,
+  "lat": 9.9605538,
+  "lon": 76.3081584,
+  "tags": {
+    "name": "Thampan Thomas Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11166520618,
+  "lat": 21.5161095,
+  "lon": 70.4444067,
+  "tags": {
+    "name": "Bolbala Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11178123513,
+  "lat": 12.9576037,
+  "lon": 77.5685697,
+  "tags": {
+    "addr:housenumber": "21/1",
+    "addr:street": "SV Narayanaswamy Rao Marg",
+    "check_date": "2023-09-09",
+    "name": "Sree Ramaseva Mandali Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11228824231,
+  "lat": 28.5849068,
+  "lon": 77.2424164,
+  "tags": {
+    "addr:block": "K",
+    "addr:city": "New Delhi",
+    "addr:housenumber": "9",
+    "addr:place": "Jangpura Extension",
+    "addr:postcode": "110014",
+    "addr:street": "Birbal Road",
+    "check_date": "2024-03-17",
+    "contact:email": "mail@sflc.in",
+    "contact:facebook": "sflcin",
+    "contact:instagram": "sflc_in",
+    "contact:phone": "+91-11-4358-7126",
+    "contact:twitter": "SFLCin",
+    "contact:website": "https://sflc.in",
+    "level": "2",
+    "name": "Software Freedom Law Center, India",
+    "name:hi": "सॉफ्टवेयर फ्रीडम लॉ सेंटर, इंडिया",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 10:00-19:00",
+    "short_name": "SFLC India",
+    "wheelchair": "no",
+    "wikidata": "Q1394821",
+    "wikimedia_commons": "Category:Software Freedom Law Center India"
+  }
+},
+{
+  "type": "node",
+  "id": 11240215839,
+  "lat": 12.0394680,
+  "lon": 75.3575498,
+  "tags": {
+    "name": "NSS union office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11240515861,
+  "lat": 20.7525348,
+  "lon": 78.6167960,
+  "tags": {
+    "check_date": "2023-10-05",
+    "name": "Gram Seva Mandal",
+    "office": "ngo",
+    "opening_hours": "Mo-Tu,Th-Su 08:00-12:00,13:30-17:30",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11257301508,
+  "lat": 9.9461859,
+  "lon": 76.2949670,
+  "tags": {
+    "name": "Cancure Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11262407465,
+  "lat": 15.4984550,
+  "lon": 73.8273054,
+  "tags": {
+    "name": "India red cross: goa state branch",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11315554646,
+  "lat": 26.5159335,
+  "lon": 88.7234752,
+  "tags": {
+    "check_date": "2025-10-13",
+    "mobile": "+91 9733256064",
+    "name": "Eureka Club and Welfare Organisation",
+    "name:bn": "ইউরেকা ক্লাব অ্যান্ড ওয়েলফেয়ার ওর্গানাইজেশন",
+    "name:en": "Eureka Club and Welfare Organisation",
+    "office": "ngo",
+    "ref": "S/U/6089",
+    "social_facility": "social_club",
+    "toilets": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11468881519,
+  "lat": 16.5071093,
+  "lon": 80.6454387,
+  "tags": {
+    "addr:city": "Vijayawada",
+    "addr:district": "Krishna",
+    "addr:door": "S6",
+    "addr:housenumber": "S6",
+    "addr:postcode": "520010",
+    "addr:street": "Jammi chettu center",
+    "air_conditioning": "yes",
+    "baby_feeding": "no",
+    "check_date": "2024-07-08",
+    "contact:facebook": "swechaap",
+    "contact:instagram": "swechaap",
+    "contact:twitter": "swechaap",
+    "description": "Swecha Andhra Pradesh is a non-profit leveraging Free and Open Source Software (FOSS) for community development, addressing social issues, and reducing the digital divide. Committed to creating an inclusive, technologically empowered society.",
+    "email": "contactus@swechaap.org",
+    "image": "https://www.swechaap.org/wp-content/uploads/2023/11/photo_6210793860347574180_y-e1701108753361-1200x437.jpg",
+    "internet_access": "wlan",
+    "internet_access:fee": "customers",
+    "internet_access:ssid": "Swecha AP",
+    "level": "2",
+    "mobile": "+91 9505562303",
+    "name": "Swecha Andhra Pradesh",
+    "name:en": "Swecha Andhra Pradesh",
+    "name:hi": "स्वेच्छा आंध्रप्रदेश",
+    "name:te": "స్వేఛ్ఛా ఆంధ్రప్రదేశ్",
+    "office": "ngo",
+    "opening_hours": "PH,Mo-Su 09:00-20:00",
+    "phone": "+91 95055 62303",
+    "short_name": "Swecha AP",
+    "smoking": "no",
+    "start_date": "2023-01-01",
+    "website": "https://swechaap.org",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 11573979322,
+  "lat": 16.5079483,
+  "lon": 80.6269013,
+  "tags": {
+    "check_date": "2024-01-31",
+    "name": "MBVK",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11581118978,
+  "lat": 16.5070129,
+  "lon": 80.6454235,
+  "tags": {
+    "check_date": "2024-02-03",
+    "name": "Child Vikas Foundations",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11609359627,
+  "lat": 17.8123867,
+  "lon": 83.2074297,
+  "tags": {
+    "check_date": "2024-02-11",
+    "name": "Pendurti Journalist Welfare Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11655358069,
+  "lat": 17.7188736,
+  "lon": 83.3015862,
+  "tags": {
+    "addr:postcode": "530001",
+    "addr:street": "RTC Complex Road",
+    "email": "premasamajamvizag@gmail.com",
+    "name": "Prema Samajam",
+    "office": "ngo",
+    "opening_hours": "Su-Fr 08:00-20:00",
+    "phone": "9505834235",
+    "website": "https://www.premasamajamvizag.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 11680844203,
+  "lat": 12.9274226,
+  "lon": 77.5877197,
+  "tags": {
+    "name": "Yuvaka Sangha",
+    "office": "ngo",
+    "website": "http://yuvakasangha.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 11688400778,
+  "lat": 24.7107452,
+  "lon": 84.9962157,
+  "tags": {
+    "name": "Arya Tara Charitable Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11690704875,
+  "lat": 26.8856419,
+  "lon": 80.9986881,
+  "tags": {
+    "name": "Mitra Sewa Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11690739322,
+  "lat": 28.8006682,
+  "lon": 76.1427344,
+  "tags": {
+    "name": "Red Cross",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11691547913,
+  "lat": 29.1871118,
+  "lon": 79.5025478,
+  "tags": {
+    "name": "Samaj Kalyan Nidesalay",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11698437512,
+  "lat": 26.0908250,
+  "lon": 76.4721985,
+  "tags": {
+    "name": "aanganwadi",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11716167797,
+  "lat": 26.8860473,
+  "lon": 81.0054004,
+  "tags": {
+    "name": "New Horizons education charity",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11792461215,
+  "lat": 12.9739794,
+  "lon": 80.2599858,
+  "tags": {
+    "addr:housenumber": "2/259",
+    "addr:street": "first cross street",
+    "name": "South India AIDS Action Programme",
+    "office": "ngo",
+    "phone": "+914424512285",
+    "website": "siaapindia.org"
+  }
+},
+{
+  "type": "node",
+  "id": 11868980082,
+  "lat": 26.1729450,
+  "lon": 91.7615399,
+  "tags": {
+    "name": "Lachit Jyoti Mahila Samity",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 11960776695,
+  "lat": 28.5385473,
+  "lon": 77.2492158,
+  "tags": {
+    "addr:block": "I",
+    "addr:housenumber": "1718",
+    "addr:parentstreet": "Bipinchandra Pal Marg",
+    "addr:place": "Chittaranjan Park",
+    "air_conditioning": "yes",
+    "contact:mobile": "+91-9667718415",
+    "contact:website": "https://internetfreedom.in/",
+    "level": "3",
+    "name": "Internet Freedom Foundation",
+    "office": "ngo",
+    "short_name": "IFF"
+  }
+},
+{
+  "type": "node",
+  "id": 12033134572,
+  "lat": 9.9481843,
+  "lon": 76.3476880,
+  "tags": {
+    "name": "Adharam Ezhuthu",
+    "office": "ngo",
+    "phone": "9447874557"
+  }
+},
+{
+  "type": "node",
+  "id": 12055641911,
+  "lat": 9.9948372,
+  "lon": 76.2923691,
+  "tags": {
+    "addr:city": "Kochi",
+    "addr:district": "Ernakulam",
+    "addr:housenumber": "1F, Pavakulam Building",
+    "addr:postcode": "682017",
+    "addr:street": "Bus Stand Jn, Kaloor",
+    "name": "CSC Digital Seva",
+    "office": "ngo",
+    "opening_hours": "Mo-Sa 09:00-17:00"
+  }
+},
+{
+  "type": "node",
+  "id": 12135560011,
+  "lat": 28.6464173,
+  "lon": 77.1880449,
+  "tags": {
+    "addr:floor": "0",
+    "addr:housenumber": "15A/30",
+    "addr:street": "Saraswati Marg",
+    "addr:unit": "WEA",
+    "check_date": "2024-08-25",
+    "email": "rkashramkutir@gmail.com",
+    "level": "0",
+    "name": "Ramakrishna Ashram Kutir",
+    "office": "ngo",
+    "phone": "+91 72919 20747; +91 77018 61543; +91 98114 17580",
+    "religion": "hindu"
+  }
+},
+{
+  "type": "node",
+  "id": 12145967499,
+  "lat": 9.9634762,
+  "lon": 76.2940503,
+  "tags": {
+    "name": "Help Age India",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12252741909,
+  "lat": 30.2028070,
+  "lon": 74.9500635,
+  "tags": {
+    "name": "Bathinda Press Club",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12350486701,
+  "lat": 12.5472443,
+  "lon": 76.7003088,
+  "tags": {
+    "name": "Forest",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12369327483,
+  "lat": 12.9230834,
+  "lon": 79.1314635,
+  "tags": {
+    "name": "Society To Prevent Cruelty Of Animals",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12375808283,
+  "lat": 28.5630326,
+  "lon": 77.1620527,
+  "tags": {
+    "addr:block": "A",
+    "addr:city": "New Delhi",
+    "addr:housenumber": "49",
+    "addr:place": "Vasant Vihar",
+    "addr:postcode": "110057",
+    "addr:street": "Vasant Marg",
+    "name": "International Committee of the Red Cross",
+    "office": "ngo",
+    "operator:wikidata": "Q7178",
+    "short_name": "ICRC"
+  }
+},
+{
+  "type": "node",
+  "id": 12408679451,
+  "lat": 12.9757784,
+  "lon": 77.6026895,
+  "tags": {
+    "addr:city": "Bengaluru",
+    "addr:floor": "4",
+    "addr:housename": "Cobalt Building",
+    "addr:housenumber": "46/1",
+    "addr:postcode": "560001",
+    "addr:street": "Church Street",
+    "addr:suburb": "Shanthala Nagar",
+    "check_date": "2025-02-15",
+    "contact:instagram": "samagataorg",
+    "email": "foundation@samagata.org",
+    "level": "4",
+    "name": "Samagata Foundation",
+    "office": "ngo",
+    "website": "https://samagata.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 12528765157,
+  "lat": 28.6175940,
+  "lon": 77.0328185,
+  "tags": {
+    "check_date": "2025-01-24",
+    "name": "Masoom Duniya(School For Special Children)",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12596191375,
+  "lat": 26.1575976,
+  "lon": 86.8018752,
+  "tags": {
+    "name": "PIPRA OFFICE BLOCK",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12596611501,
+  "lat": 17.4037870,
+  "lon": 78.5186634,
+  "tags": {
+    "addr:housenumber": "H.No.2-2-18/2/A",
+    "addr:postcode": "500007",
+    "addr:street": "Lane B",
+    "email": "anveshirc@gmail.com",
+    "name": "Anveshi Research Centre for Women's Studies",
+    "office": "ngo",
+    "opening_hours": "Tu-Su 09:00-18:00",
+    "phone": "040 27157431",
+    "website": "https://www.anveshi.org.in/"
+  }
+},
+{
+  "type": "node",
+  "id": 12606776173,
+  "lat": 16.5129114,
+  "lon": 80.6662986,
+  "tags": {
+    "check_date": "2025-02-21",
+    "name:te": "తెలుగు భాషోద్యమ సమాఖ్య",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12609542988,
+  "lat": 12.9060669,
+  "lon": 77.5836596,
+  "tags": {
+    "check_date": "2025-02-22",
+    "name": "ShikshaLokam",
+    "office": "ngo",
+    "website": "https://shikshalokam.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 12680797156,
+  "lat": 28.6239623,
+  "lon": 77.2907437,
+  "tags": {
+    "addr:block": "B",
+    "addr:city": "Delhi",
+    "addr:housenumber": "319",
+    "addr:postcode": "110092",
+    "addr:street": "Gali Number 5",
+    "addr:suburb": "Mandawali",
+    "alt_name": "N.J. Associates",
+    "contact:mobile": "+91-92139-91157;+91-98718-48304",
+    "name": "Urooj Foundation",
+    "office": "ngo",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 12785542628,
+  "lat": 15.4978290,
+  "lon": 73.8243218,
+  "tags": {
+    "addr:city": "Panjim",
+    "addr:district": "North Goa",
+    "addr:housenumber": "603/04",
+    "addr:postcode": "403001",
+    "addr:street": "Mahatma Gandhi Road",
+    "level": "6",
+    "name": "Citizens Hub",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12809319285,
+  "lat": 13.0101007,
+  "lon": 77.5674623,
+  "tags": {
+    "name": "BWSSB Employee's Association",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12882863968,
+  "lat": 28.6207868,
+  "lon": 77.1365502,
+  "tags": {
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 12942225042,
+  "lat": 28.5002244,
+  "lon": 77.2266136,
+  "tags": {
+    "name": "Life Project For Youth",
+    "office": "ngo",
+    "short_name": "LP4Y"
+  }
+},
+{
+  "type": "node",
+  "id": 12956024765,
+  "lat": 9.9909865,
+  "lon": 77.9592204,
+  "tags": {
+    "Type": "Education Academy",
+    "addr:city": "Mullipallam (PO)",
+    "addr:district": "Madurai",
+    "addr:housenumber": "T. Malaipatti",
+    "addr:postcode": "625207",
+    "addr:street": "Thenkarai, Mullipallam (PO)",
+    "description": "The DHAN Academy is a pioneer in the field of development management education with a unique value framework and aims at grooming and mentoring young graduates as Development professionals with relevant Attitude, Skill and Knowledge.",
+    "name": "The DHAN Academy",
+    "office": "ngo",
+    "phone": "+91 4543 299 989",
+    "website": "https://dhan.org/tda/pgddm.php#"
+  }
+},
+{
+  "type": "node",
+  "id": 13004476938,
+  "lat": 17.2327810,
+  "lon": 79.1234445,
+  "tags": {
+    "name": "Press Club Chityal",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13016771412,
+  "lat": 26.1772167,
+  "lon": 91.8036585,
+  "tags": {
+    "name": "Gitali Mohila Commitee",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13016771444,
+  "lat": 26.1794180,
+  "lon": 91.8081805,
+  "tags": {
+    "name": "Sarbudoy Sahajug Mohila Commitee",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13048461935,
+  "lat": 8.5059747,
+  "lon": 76.9612889,
+  "tags": {
+    "addr:unit": "C6",
+    "level": "3",
+    "name": "Citizen Digital Foundation",
+    "office": "ngo",
+    "short_name": "CDF",
+    "website": "https://citizendigitalfoundation.org"
+  }
+},
+{
+  "type": "node",
+  "id": 13067345321,
+  "lat": 19.0530701,
+  "lon": 72.8288082,
+  "tags": {
+    "name": "CCDT Office",
+    "name:en": "CCDT Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13110030036,
+  "lat": 8.4985714,
+  "lon": 76.9660984,
+  "tags": {
+    "contact:facebook": "https://www.facebook.com/people/Nadi-Foundation/100087933215921/",
+    "contact:instagram": "https://www.instagram.com/nadi.india/",
+    "contact:linkedin": "https://www.linkedin.com/company/nadi-foundation",
+    "name": "NADI Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13110965595,
+  "lat": 12.9200800,
+  "lon": 77.5795242,
+  "tags": {
+    "name": "Rainmatter Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13275129248,
+  "lat": 28.6189845,
+  "lon": 77.2266921,
+  "tags": {
+    "name": "Civil Services Officers Institute",
+    "office": "ngo",
+    "website": "https://dopt.gov.in/welfare/civil-services-officers-institute"
+  }
+},
+{
+  "type": "node",
+  "id": 13285010104,
+  "lat": 31.0770486,
+  "lon": 78.1834596,
+  "tags": {
+    "name": "Waste warriors",
+    "office": "ngo",
+    "phone": "+91 9012881805",
+    "website": "https://www.wastewarriors.org/"
+  }
+},
+{
+  "type": "node",
+  "id": 13293836602,
+  "lat": 8.5007710,
+  "lon": 76.9477055,
+  "tags": {
+    "name": "AKG Centre cpi-m state office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13307476189,
+  "lat": 12.1020871,
+  "lon": 75.2253001,
+  "tags": {
+    "check_date": "2025-11-16",
+    "name": "Wildlife Trust Of India Kannur Kandal Project Field Station",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13388162290,
+  "lat": 17.7163592,
+  "lon": 83.3042491,
+  "tags": {
+    "name": "Sri Geetha Seva Trust",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13388908618,
+  "lat": 15.4977088,
+  "lon": 73.8198811,
+  "tags": {
+    "name": "Vice Versa Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13403788601,
+  "lat": 24.4723975,
+  "lon": 88.0498560,
+  "tags": {
+    "addr:postcode": "742225",
+    "name": "Pranab Mukherjee Sonatikuri House",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13449444104,
+  "lat": 12.7371338,
+  "lon": 77.3033990,
+  "tags": {
+    "name": "Spandhana",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13476188201,
+  "lat": 10.0920276,
+  "lon": 78.1736149,
+  "tags": {
+    "addr:postcode": "624401",
+    "addr:street": "Madurai - Natham Rd, Saranthangi, Tamil Nadu.",
+    "level": "0",
+    "name:en": "CEWAS (center for women advocacy studies)",
+    "office": "ngo",
+    "opening_hours": "Mo-Fr 10:00-17:30"
+  }
+},
+{
+  "type": "node",
+  "id": 13513594620,
+  "lat": 18.9338711,
+  "lon": 73.7766269,
+  "tags": {
+    "check_date": "2026-01-31",
+    "name": "14 Trees Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "node",
+  "id": 13536708274,
+  "lat": 8.4943993,
+  "lon": 76.9431374,
+  "tags": {
+    "abbr_name": "IDAF",
+    "addr:city": "Thiruvananthapuram",
+    "addr:district": "Thiruvanathapuram",
+    "addr:housenumber": "MBRA-A4",
+    "addr:street": "Mathrubhumi Road",
+    "alt_name:ml": "ഗ്രന്ഥപുര",
+    "description": "Indic Digital Archive Foundation is a non-profit organisation that works on digital archival and preservation of Indic language cultural artefacts such as books, publications, and documents, making them available for open access.",
+    "level": "1",
+    "name": "Indic Digital Archive Foundation",
+    "office": "ngo",
+    "website": "https://indicarchive.org",
+    "wikidata": "Q138387058"
+  }
+},
+{
+  "type": "node",
+  "id": 13583135401,
+  "lat": 22.5286836,
+  "lon": 87.9873501,
+  "tags": {
+    "addr:postcode": "711401",
+    "name": "Santi Seba Sangha (শান্তি সেবা সংঘ)",
+    "office": "ngo",
+    "opening_hours": "Mo-Su 09:00-21:00"
+  }
+},
+{
+  "type": "node",
+  "id": 13624560501,
+  "lat": 27.8419917,
+  "lon": 80.5122883,
+  "tags": {
+    "addr:postcode": "261501",
+    "name": "AIM TRUST FARM HOUSE",
+    "office": "ngo",
+    "website": "http://www.aimindiatrust.org"
+  }
+},
+{
+  "type": "way",
+  "id": 191349933,
+  "center": {
+    "lat": 29.7542476,
+    "lon": 80.0489836
+  },
+  "tags": {
+    "addr:housename": "Tripuradevi",
+    "addr:housenumber": "via Berinag",
+    "addr:postcode": "262531",
+    "addr:street": "District Pithoragarh",
+    "description": "Collecting = rain water; Purpose = Offices and workshops; Recycling = waste water to grow vegetable; State = Uttarakhand; Using = Solar and biomaas energy",
+    "landuse": "commercial",
+    "name": "AVANI",
+    "office": "ngo",
+    "website": "https://avani-kumaon.org/"
+  }
+},
+{
+  "type": "way",
+  "id": 249517411,
+  "center": {
+    "lat": 12.4073596,
+    "lon": 76.5761172
+  },
+  "tags": {
+    "name": "Samaja",
+    "name:kn": "ಸಮಾಜ",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 286667049,
+  "center": {
+    "lat": 25.3512386,
+    "lon": 74.6376072
+  },
+  "tags": {
+    "addr:city": "Bhilwara",
+    "addr:housenumber": "10",
+    "addr:postcode": "311001",
+    "addr:street": "Ashok Nagar",
+    "name": "Rashtriya Swayamsevak Sangh, Bhilwara",
+    "name:hi": "राष्ट्रीय स्वयंसेवक संघ, भीलवाड़ा",
+    "office": "ngo",
+    "smoking": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 291266074,
+  "center": {
+    "lat": 12.9880279,
+    "lon": 77.5803274
+  },
+  "tags": {
+    "amenity": "community_centre",
+    "landuse": "commercial",
+    "name": "Gandhi Bhavan",
+    "name:etymology:wikidata": "Q1001",
+    "name:kn": "ಗಾಂಧಿ ಭವನ",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 315928641,
+  "center": {
+    "lat": 12.3253356,
+    "lon": 76.6395111
+  },
+  "tags": {
+    "addr:city": "Mysuru",
+    "addr:postcode": "570020",
+    "addr:street": "Vivekananda Road",
+    "building": "yes",
+    "name": "Mysore Grahakara Parishat",
+    "name:kn": "ಮೈಸೂರು ಗ್ರಾಹಕರ ಪರಿಷತ್",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 328996274,
+  "center": {
+    "lat": 12.9731218,
+    "lon": 77.5986467
+  },
+  "tags": {
+    "addr:city": "Bangalore",
+    "addr:housenumber": "26",
+    "addr:postcode": "560001",
+    "addr:street": "Lavelle Road",
+    "landuse": "commercial",
+    "name": "The Churches' Council for Child and Youth Care",
+    "office": "ngo",
+    "opening_hours": "24/7",
+    "smoking": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 340392933,
+  "center": {
+    "lat": 28.5909721,
+    "lon": 77.2231127
+  },
+  "tags": {
+    "building": "commercial",
+    "name": "WWF-India",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 343680931,
+  "center": {
+    "lat": 12.9705397,
+    "lon": 77.6436174
+  },
+  "tags": {
+    "addr:housenumber": "599",
+    "addr:street": "12th Main Road",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "Arghyam - Safe sustainable water for all",
+    "office": "ngo",
+    "roof:shape": "flat"
+  }
+},
+{
+  "type": "way",
+  "id": 350287830,
+  "center": {
+    "lat": 27.0388653,
+    "lon": 88.2641914
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Red Cross Soceity",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 359022915,
+  "center": {
+    "lat": 22.5139401,
+    "lon": 88.3994394
+  },
+  "tags": {
+    "addr:city": "Kolkata",
+    "addr:housenumber": "1300",
+    "addr:postcode": "700107",
+    "addr:street": "Rajdanda Main Road",
+    "building": "yes",
+    "name": "Jagadis Bose National Science Talent Search (JBNSTS)",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 359770952,
+  "center": {
+    "lat": 18.5912836,
+    "lon": 73.7400416
+  },
+  "tags": {
+    "addr:city": "Hinjawadi",
+    "addr:housenumber": "HPRQ+GX9, Hinjawadi Village, Hinjawadi, Pune, Maharashtra 411057",
+    "addr:postcode": "411057",
+    "addr:street": "Hinjawadi - Wakad Road Road",
+    "building": "yes",
+    "name": "Vilas Sakhare Social Foundation",
+    "office": "ngo",
+    "phone": "09860509800"
+  }
+},
+{
+  "type": "way",
+  "id": 389329646,
+  "center": {
+    "lat": 11.4308088,
+    "lon": 76.8592298
+  },
+  "tags": {
+    "addr:city": "Kotagiri",
+    "addr:postcode": "643217",
+    "addr:street": "Groves Hill Road",
+    "building": "yes",
+    "name": "Keystone Foundation",
+    "office": "ngo",
+    "source": "Bing",
+    "website": "https://keystone-foundation.org/"
+  }
+},
+{
+  "type": "way",
+  "id": 389473060,
+  "center": {
+    "lat": 11.4306568,
+    "lon": 76.8591285
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 389473061,
+  "center": {
+    "lat": 11.4307147,
+    "lon": 76.8589997
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 389473062,
+  "center": {
+    "lat": 11.4308365,
+    "lon": 76.8590646
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 389473063,
+  "center": {
+    "lat": 11.4305471,
+    "lon": 76.8585653
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 389473065,
+  "center": {
+    "lat": 11.4309797,
+    "lon": 76.8592460
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 389473066,
+  "center": {
+    "lat": 11.4309337,
+    "lon": 76.8592067
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 389473067,
+  "center": {
+    "lat": 11.4309116,
+    "lon": 76.8591488
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 389473069,
+  "center": {
+    "lat": 11.4304902,
+    "lon": 76.8590381
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 439113643,
+  "center": {
+    "lat": 22.5322776,
+    "lon": 92.8940076
+  },
+  "tags": {
+    "addr:city": "Lawngtlai",
+    "addr:housenumber": "Below DC Office",
+    "addr:postcode": "796891",
+    "addr:street": "Electric Veng",
+    "building": "yes",
+    "name": "Mizoram Journalist Association Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 570886310,
+  "center": {
+    "lat": 28.3860974,
+    "lon": 77.3658068
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 575099749,
+  "center": {
+    "lat": 12.9865689,
+    "lon": 77.6444392
+  },
+  "tags": {
+    "landuse": "commercial",
+    "name": "WHO India",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 601518376,
+  "center": {
+    "lat": 11.2628464,
+    "lon": 75.7828948
+  },
+  "tags": {
+    "name": "Oisca Youth Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 609994594,
+  "center": {
+    "lat": 10.1857488,
+    "lon": 76.3254903
+  },
+  "tags": {
+    "addr:city": "Chalakkudi",
+    "addr:postcode": "683579",
+    "addr:street": "Moozhikulam",
+    "building": "yes",
+    "name": "Moozhikkulam Sala",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 619540605,
+  "center": {
+    "lat": 9.6804794,
+    "lon": 76.3350205
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Cooperative Training Centre Cherthala",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 619613799,
+  "center": {
+    "lat": 9.6916707,
+    "lon": 76.3411498
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Kerala State Ware Housing Corporation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 620220776,
+  "center": {
+    "lat": 9.8549844,
+    "lon": 76.3260862
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Arookutty service co-op Soaiety Ltd.No .1008",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 620244702,
+  "center": {
+    "lat": 9.6964167,
+    "lon": 76.3233563
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Velovottom coir cooperative society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 620329524,
+  "center": {
+    "lat": 9.6644539,
+    "lon": 76.3778407
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 652861435,
+  "center": {
+    "lat": 10.4364420,
+    "lon": 76.2711606
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Sreekrishnapuram Nair Service Society Mandiram",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 693466161,
+  "center": {
+    "lat": 32.1073472,
+    "lon": 76.5736220
+  },
+  "tags": {
+    "name": "Sambhaavnaa Institute",
+    "office": "ngo",
+    "website": "http://sambhaavnaa.org/"
+  }
+},
+{
+  "type": "way",
+  "id": 732575681,
+  "center": {
+    "lat": 28.6288400,
+    "lon": 77.2375191
+  },
+  "tags": {
+    "barrier": "wall",
+    "contact:email": "info@gandhipeace.foundation",
+    "contact:website": "http://www.gandhipeace.foundation",
+    "name": "Gandhi Peace Foundation",
+    "name:hi": "गांधी शांति प्रतिष्ठान",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 759396351,
+  "center": {
+    "lat": 8.4979383,
+    "lon": 76.9465950
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Trivandrum Cultural Centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 787394622,
+  "center": {
+    "lat": 8.4437469,
+    "lon": 77.0172466
+  },
+  "tags": {
+    "addr:city": "pallichal",
+    "addr:postcode": "695501",
+    "addr:street": "Old NH",
+    "building": "yes",
+    "building:levels": "4",
+    "office": "ngo",
+    "smoking": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 798101347,
+  "center": {
+    "lat": 10.0200084,
+    "lon": 76.3463775
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Red Cross",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 800334504,
+  "center": {
+    "lat": 12.2016471,
+    "lon": 75.1758396
+  },
+  "tags": {
+    "addr:city": "Puthilot",
+    "addr:district": "Kasaragod",
+    "addr:postcode": "671310",
+    "addr:street": "puthilot -koval road",
+    "building": "yes",
+    "level": "1",
+    "name": "Puthilot mapittacheri Kavu temple commite office",
+    "office": "ngo",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 800481714,
+  "center": {
+    "lat": 9.2220283,
+    "lon": 76.7747411
+  },
+  "tags": {
+    "building": "yes",
+    "name": "EX Service",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 807332477,
+  "center": {
+    "lat": 23.0463405,
+    "lon": 88.8261202
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 836921572,
+  "center": {
+    "lat": 21.2099061,
+    "lon": 81.8114341
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Sri Sathya Sai Sowbhagyam",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 845659967,
+  "center": {
+    "lat": 8.5594431,
+    "lon": 76.9770377
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Grameena Patana Kendram",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 846654629,
+  "center": {
+    "lat": 8.5646006,
+    "lon": 76.9910546
+  },
+  "tags": {
+    "addr:city": "Thiruvananthapuram",
+    "addr:housenumber": "Grameena Patana Kendram, Citizen Education  Center, Karakulam",
+    "addr:postcode": "695043",
+    "addr:street": "Thiruvananthapuram - Thenmala Road SH 2",
+    "building": "yes",
+    "name": "Grameena Patana Kendram",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 851980700,
+  "center": {
+    "lat": 25.6759215,
+    "lon": 94.1112808
+  },
+  "tags": {
+    "building": "yes",
+    "name": "ABCC Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 857964388,
+  "center": {
+    "lat": 25.6843671,
+    "lon": 94.1035116
+  },
+  "tags": {
+    "building": "yes",
+    "name": "NBCC Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 857964389,
+  "center": {
+    "lat": 25.6842451,
+    "lon": 94.1039521
+  },
+  "tags": {
+    "addr:city": "Kohima",
+    "addr:postcode": "797001",
+    "addr:street": "Bayavu",
+    "building": "yes",
+    "name": "NBCC Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 860290062,
+  "center": {
+    "lat": 9.8535507,
+    "lon": 76.9466867
+  },
+  "tags": {
+    "addr:city": "Painavu",
+    "addr:postcode": "685603",
+    "addr:street": "Thodupuzha - Puliyanmala Road",
+    "building": "yes",
+    "name": "Idukki District Government Employees and Pensioners Co-operative Society",
+    "office": "ngo",
+    "phone": "+91-4862-232568"
+  }
+},
+{
+  "type": "way",
+  "id": 860993417,
+  "center": {
+    "lat": 9.9725807,
+    "lon": 76.5724364
+  },
+  "tags": {
+    "building": "commercial",
+    "name": "Senior Citizens' Bhavan",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 860996016,
+  "center": {
+    "lat": 9.9722035,
+    "lon": 76.5743669
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Rotary Club, Muvattupuzha",
+    "office": "ngo",
+    "operator": "Rotary International",
+    "website": "https://www.rotary.org/en"
+  }
+},
+{
+  "type": "way",
+  "id": 881799302,
+  "center": {
+    "lat": 29.2235772,
+    "lon": 79.5016242
+  },
+  "tags": {
+    "building": "yes",
+    "name": "WWF-India Field Office, Haldwani",
+    "office": "ngo",
+    "website": "http://www.wwfindia.org/"
+  }
+},
+{
+  "type": "way",
+  "id": 884627458,
+  "center": {
+    "lat": 9.7240872,
+    "lon": 76.3221164
+  },
+  "tags": {
+    "addr:city": "Pattanakkad Vayalar",
+    "addr:postcode": "688531",
+    "addr:street": "vayalar road",
+    "building": "yes",
+    "name": "Neelimangalam Coir Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 946204057,
+  "center": {
+    "lat": 11.8159832,
+    "lon": 75.9547765
+  },
+  "tags": {
+    "addr:city": "thavinjal",
+    "addr:postcode": "670644",
+    "addr:street": "vimalanagar po",
+    "building": "yes",
+    "name": "mitranikethan foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 955270737,
+  "center": {
+    "lat": 10.4419292,
+    "lon": 76.2880158
+  },
+  "tags": {
+    "addr:postcode": "680302",
+    "building": "yes",
+    "name": "Vattanathra Nair Service Society Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 958067497,
+  "center": {
+    "lat": 20.2752115,
+    "lon": 85.7932751
+  },
+  "tags": {
+    "addr:city": "Bhubaneswar",
+    "addr:country": "IN",
+    "addr:housenumber": "103/B, HIG, BDA Duplex",
+    "addr:postcode": "751003",
+    "addr:state": "Odisha",
+    "addr:street": "Baramunda",
+    "building": "yes",
+    "description": "ISRLeaders Club is a registered NGO (Social Service Organization) working towards the empowerment and rehabilitation of 100 million orphans & vulnerable in the fields of Health, Education & Livelihood.",
+    "email": "info@isrleaders.club",
+    "name": "ISRLeaders Club",
+    "office": "ngo",
+    "opening_hours": "24/7",
+    "opening_hours:covid19": "restricted",
+    "phone": "+91 90785 72922",
+    "start_date": "2018-05-15",
+    "website": "https://www.isrleaders.club"
+  }
+},
+{
+  "type": "way",
+  "id": 961552969,
+  "center": {
+    "lat": 11.8404332,
+    "lon": 75.9195997
+  },
+  "tags": {
+    "building": "yes",
+    "name": "WSS Society office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 975412079,
+  "center": {
+    "lat": 10.4399792,
+    "lon": 76.2951008
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Pookode Nair Service Society Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 985125075,
+  "center": {
+    "lat": 10.4322141,
+    "lon": 76.2903610
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Khadi Board Office (SC Self Employment Scheme)",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 998790364,
+  "center": {
+    "lat": 28.6177253,
+    "lon": 77.2118322
+  },
+  "tags": {
+    "barrier": "wall",
+    "contact:facebook": "https://www.facebook.com/AllIndiaFineArtsCraftsSociety",
+    "contact:website": "https://www.aifacs.org.in/",
+    "name": "All India Fine Arts and Crafts Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1075068781,
+  "center": {
+    "lat": 10.0168704,
+    "lon": 76.3358779
+  },
+  "tags": {
+    "building": "yes",
+    "name": "District  Nirmithi Kendra",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1077645710,
+  "center": {
+    "lat": 10.0176222,
+    "lon": 76.3506881
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Theruvoram Asha Bhavan",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1085767212,
+  "center": {
+    "lat": 10.0748922,
+    "lon": 76.2984806
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Fertilisers & Chemicals Travancore Limited",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1087008972,
+  "center": {
+    "lat": 12.9835444,
+    "lon": 77.6234989
+  },
+  "tags": {
+    "amenity": "social_facility",
+    "brand": "Red Cross",
+    "name": "Indian Red Cross Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1091485733,
+  "center": {
+    "lat": 24.8980360,
+    "lon": 82.5441241
+  },
+  "tags": {
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1094016247,
+  "center": {
+    "lat": 11.7405864,
+    "lon": 75.9003807
+  },
+  "tags": {
+    "building": "yes",
+    "name": "makkiyad ksheerotpadaka sahakarana sangham",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1095354065,
+  "center": {
+    "lat": 9.3669398,
+    "lon": 76.5438487
+  },
+  "tags": {
+    "building": "yes",
+    "name": "NSS Karayogam Office",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1137326742,
+  "center": {
+    "lat": 17.9003442,
+    "lon": 77.5030697
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1152825057,
+  "center": {
+    "lat": 18.6005347,
+    "lon": 73.7320715
+  },
+  "tags": {
+    "addr:city": "Hinjawadi",
+    "addr:housenumber": "Plot no.50, Behind Gurukrupa hospital, near brahma PG Laxmi chowk, Marunji road, 1, Hinjawadi, Pune, Maharashtra 411057",
+    "addr:street": "Bhumkar Das Gurge Road",
+    "building": "yes",
+    "name": "Apna Ghar Ashram Pune",
+    "office": "ngo",
+    "phone": "07498550554"
+  }
+},
+{
+  "type": "way",
+  "id": 1152825266,
+  "center": {
+    "lat": 18.6022789,
+    "lon": 73.7323271
+  },
+  "tags": {
+    "addr:city": "Hinjawadi",
+    "addr:housenumber": "Pumpkin Patch Daycare, 78/3, Near Vinode Vasti Jakat, Naka, Marunji Road, Wakad, Pune, Maharashtra 411057",
+    "addr:street": "Marunji Road",
+    "building": "yes",
+    "name": "Aatmaja Foundation",
+    "office": "ngo",
+    "phone": "07028009200",
+    "website": "https://aatmaja.org/"
+  }
+},
+{
+  "type": "way",
+  "id": 1192493386,
+  "center": {
+    "lat": 11.9170871,
+    "lon": 79.8315275
+  },
+  "tags": {
+    "building": "house",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1246325797,
+  "center": {
+    "lat": 16.4308980,
+    "lon": 80.5372052
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Charvaka Ashramam",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1251792381,
+  "center": {
+    "lat": 22.0896286,
+    "lon": 69.2782852
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Satvara Samaj Vadi",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1267493075,
+  "center": {
+    "lat": 11.6792122,
+    "lon": 76.0232448
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Venniyod Ksheerolpadaka Sahakarana Sangham",
+    "name:ml": "വെണ്ണിയോട് ക്ഷീരോൽപാദക സഹകരണ സംഘം",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1346845222,
+  "center": {
+    "lat": 9.9334389,
+    "lon": 76.2997856
+  },
+  "tags": {
+    "addr:city": "Kochi",
+    "addr:district": "Ernakulam",
+    "addr:place": "Santhi Nagar",
+    "addr:postcode": "682013",
+    "addr:state": "KL",
+    "addr:suburb": "Thevara",
+    "building": "office",
+    "name": "Thevara Social Welfare Organisation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1354211496,
+  "center": {
+    "lat": 13.0739713,
+    "lon": 77.6570917
+  },
+  "tags": {
+    "name": "Accept Society",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1360641769,
+  "center": {
+    "lat": 24.5659038,
+    "lon": 73.7238148
+  },
+  "tags": {
+    "building": "yes",
+    "name": "narayan seva sansthan",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1363505242,
+  "center": {
+    "lat": 13.0149962,
+    "lon": 77.6297184
+  },
+  "tags": {
+    "name": "India Campus Crusade for Christ",
+    "office": "ngo",
+    "wheelchair": "limited"
+  }
+},
+{
+  "type": "way",
+  "id": 1366656628,
+  "center": {
+    "lat": 13.0259784,
+    "lon": 77.6363999
+  },
+  "tags": {
+    "landuse": "commercial",
+    "name": "Cosmic Culture Research Centre",
+    "note": "Under litigation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1381026237,
+  "center": {
+    "lat": 13.0803046,
+    "lon": 77.6165856
+  },
+  "tags": {
+    "landuse": "orchard",
+    "name": "Satya Foundation",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1418253577,
+  "center": {
+    "lat": 13.0763327,
+    "lon": 77.6056416
+  },
+  "tags": {
+    "full_name": "Children's LoveCastles Trust",
+    "landuse": "orchard",
+    "name": "CLT India",
+    "office": "ngo",
+    "start_date": "1997",
+    "website": "https://cltindia.org",
+    "wikipedia": "en:Children's LoveCastles Trust"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791067,
+  "center": {
+    "lat": 18.9898102,
+    "lon": 72.8235024
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791068,
+  "center": {
+    "lat": 18.9899726,
+    "lon": 72.8235828
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791069,
+  "center": {
+    "lat": 18.9901232,
+    "lon": 72.8236564
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791070,
+  "center": {
+    "lat": 18.9903251,
+    "lon": 72.8237678
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791071,
+  "center": {
+    "lat": 18.9904303,
+    "lon": 72.8238328
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791072,
+  "center": {
+    "lat": 18.9905554,
+    "lon": 72.8239028
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791073,
+  "center": {
+    "lat": 18.9904387,
+    "lon": 72.8243471
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791074,
+  "center": {
+    "lat": 18.9903337,
+    "lon": 72.8245536
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791075,
+  "center": {
+    "lat": 18.9903584,
+    "lon": 72.8242669
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791076,
+  "center": {
+    "lat": 18.9902439,
+    "lon": 72.8245063
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791077,
+  "center": {
+    "lat": 18.9901366,
+    "lon": 72.8244454
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791078,
+  "center": {
+    "lat": 18.9896483,
+    "lon": 72.8239160
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791079,
+  "center": {
+    "lat": 18.9898088,
+    "lon": 72.8239822
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791080,
+  "center": {
+    "lat": 18.9899549,
+    "lon": 72.8240531
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791081,
+  "center": {
+    "lat": 18.9901597,
+    "lon": 72.8241591
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1446791083,
+  "center": {
+    "lat": 18.9894747,
+    "lon": 72.8238331
+  },
+  "tags": {
+    "building": "yes",
+    "check_date": "2026-03-20",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1449587798,
+  "center": {
+    "lat": 12.9638483,
+    "lon": 77.6782345
+  },
+  "tags": {
+    "landuse": "commercial",
+    "name": "Bharathiya Grameen Mahila Sangh",
+    "name:kn": "ಭಾರತೀಯ ಗ್ರಾಮಿನ ಮಹೀಳ ಸೆಂಘ",
+    "office": "ngo",
+    "short_name": "BGMS"
+  }
+},
+{
+  "type": "way",
+  "id": 1452541777,
+  "center": {
+    "lat": 12.9111575,
+    "lon": 77.7106058
+  },
+  "tags": {
+    "amenity": "social_centre",
+    "office": "ngo"
+  }
+},
+{
+  "type": "way",
+  "id": 1463081181,
+  "center": {
+    "lat": 34.1190119,
+    "lon": 74.8216556
+  },
+  "tags": {
+    "building": "yes",
+    "office": "ngo"
+  }
+},
+{
+  "type": "relation",
+  "id": 19507424,
+  "center": {
+    "lat": 23.2750204,
+    "lon": 77.4057461
+  },
+  "tags": {
+    "addr:city": "Bhopal",
+    "addr:district": "Bhopal",
+    "addr:postcode": "462001",
+    "addr:street": "Berasia Road",
+    "alt_name": "Sambhavna Trust Clinic",
+    "building": "yes",
+    "name": "Sambhavna Trust",
+    "office": "ngo",
+    "type": "multipolygon",
+    "website": "https://sambhavnatrust.org",
+    "wikidata": "Q7409037",
+    "wikipedia": "en:Sambhavna Trust Clinic"
+  }
+}
+
+  ]
+}

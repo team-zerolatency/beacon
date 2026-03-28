@@ -1,0 +1,56 @@
+{
+  "expo": {
+    "name": "Beacon",
+    "slug": "beacon",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/favicon/apple-touch-icon.png",
+    "scheme": "beacon",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/favicon/web-app-manifest-512x512.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.hours_god.beacon"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/favicon/favicon.ico"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "backgroundColor": "#000000"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "456c064d-eb99-45de-97d3-248f4fc84269"
+      }
+    },
+    "owner": "hours_god"
+  }
+}
