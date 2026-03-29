@@ -9,12 +9,15 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+
+type RegistrationRole = "client" | "ngo" | "helper";
 
 export default function RegistrationScreen() {
   const router = useRouter();
@@ -23,6 +26,7 @@ export default function RegistrationScreen() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState(pending?.email ?? "");
   const [password, setPassword] = useState("");
+  const [selectedRole, setSelectedRole] = useState<RegistrationRole>("client");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -95,9 +99,46 @@ export default function RegistrationScreen() {
       }
     }
 
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      setLoading(false);
+      setError("Account created, but session is unavailable. Please login.");
+      return;
+    }
+
+    const { error: profileErr } = await supabase.from("profiles").upsert(
+      {
+        id: user.id,
+        full_name: normalizedName,
+        user_type: selectedRole,
+      },
+      { onConflict: "id" },
+    );
+
+    if (profileErr) {
+      setLoading(false);
+      setError(
+        `Registration created, but role could not be saved: ${profileErr.message}`,
+      );
+      return;
+    }
+
     setLoading(false);
     setMessage("Registration successful. Redirecting...");
     clearPendingRegistration();
+    if (selectedRole === "ngo") {
+      router.replace("/ngo" as never);
+      return;
+    }
+
+    if (selectedRole === "helper") {
+      router.replace("/helper" as never);
+      return;
+    }
+
     router.replace("/client" as never);
   }
 
@@ -107,13 +148,46 @@ export default function RegistrationScreen() {
         style={styles.container}
         behavior={Platform.select({ ios: "padding", android: undefined })}
       >
-        <View style={styles.card}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.card}>
           <Text style={styles.kicker}>BEACON Registration</Text>
           <Text style={styles.title}>Create Account</Text>
           <Text style={styles.subtitle}>
-            We prefilled your email from login. Add your full name and password
-            to finish account setup.
+            We prefilled your email from login. Add your full name, choose a
+            role, and set a password.
           </Text>
+
+          <Text style={styles.roleLabel}>Choose your role</Text>
+          <View style={styles.roleRow}>
+            {([
+              { value: "client", label: "Client" },
+              { value: "helper", label: "Helper" },
+              { value: "ngo", label: "NGO" },
+            ] as const).map((roleOption) => {
+              const active = selectedRole === roleOption.value;
+
+              return (
+                <Pressable
+                  key={roleOption.value}
+                  onPress={() => setSelectedRole(roleOption.value)}
+                  style={[styles.roleChip, active ? styles.roleChipActive : null]}
+                >
+                  <Text
+                    style={[
+                      styles.roleChipText,
+                      active ? styles.roleChipTextActive : null,
+                    ]}
+                  >
+                    {roleOption.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
 
           <TextInput
             value={fullName}
@@ -190,7 +264,8 @@ export default function RegistrationScreen() {
           <Link href="/login" style={styles.linkText}>
             Already registered? Back to login
           </Link>
-        </View>
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -203,8 +278,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "center",
     paddingHorizontal: 16,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    paddingVertical: 24,
   },
   card: {
     borderRadius: 18,
@@ -231,6 +310,39 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 21,
     fontWeight: "600",
+  },
+  roleLabel: {
+    color: "#FED7AA",
+    fontSize: 13,
+    fontWeight: "800",
+    textTransform: "uppercase",
+    letterSpacing: 0.8,
+    marginTop: 2,
+  },
+  roleRow: {
+    flexDirection: "row",
+    gap: 8,
+    flexWrap: "wrap",
+  },
+  roleChip: {
+    borderWidth: 1,
+    borderColor: "#404040",
+    borderRadius: 999,
+    backgroundColor: "#0a0a0a",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  roleChipActive: {
+    borderColor: "#F97316",
+    backgroundColor: "#431407",
+  },
+  roleChipText: {
+    color: "#D4D4D8",
+    fontSize: 13,
+    fontWeight: "700",
+  },
+  roleChipTextActive: {
+    color: "#FDBA74",
   },
   input: {
     borderWidth: 1,

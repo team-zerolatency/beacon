@@ -26,10 +26,13 @@ export default function RootLayout() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      const inAuthFlow = segments[0] === "login" || segments[0] === "registration";
+      const inAuthFlow =
+        segments[0] === "login" || segments[0] === "registration";
 
       if (
-        (event === "SIGNED_OUT" || event === "USER_DELETED" || event === "TOKEN_REFRESH_FAILED") &&
+        (event === "SIGNED_OUT" ||
+          event === "USER_DELETED" ||
+          event === "TOKEN_REFRESH_FAILED") &&
         !inAuthFlow
       ) {
         router.replace("/login");

@@ -302,6 +302,49 @@ export function ClientDashboardScreen({
     void bootstrap();
   }, []);
 
+  useEffect(() => {
+    if (!supabase) {
+      return;
+    }
+
+    const client = supabase;
+    let liveChannel: Awaited<ReturnType<typeof client.channel>> | null = null;
+    let disposed = false;
+
+    void (async () => {
+      const {
+        data: { user },
+      } = await client.auth.getUser();
+
+      if (!user || disposed) {
+        return;
+      }
+
+      liveChannel = client
+        .channel(`client-dashboard-live-${user.id}`)
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "help_requests",
+            filter: `client_id=eq.${user.id}`,
+          },
+          () => {
+            void loadMine();
+          },
+        )
+        .subscribe();
+    })();
+
+    return () => {
+      disposed = true;
+      if (liveChannel) {
+        void client.removeChannel(liveChannel);
+      }
+    };
+  }, []);
+
   // Monitor request status and stop tracking when resolved/cancelled
   useEffect(() => {
     async function cleanupFinishedRequests() {

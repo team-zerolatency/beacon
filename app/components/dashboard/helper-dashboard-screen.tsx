@@ -28,6 +28,7 @@ type DashboardView = "home" | "profile";
 
 type RequestStatus = "open" | "in_progress" | "resolved" | "cancelled";
 type RequestFilter = "all" | RequestStatus;
+const REQUESTS_PAGE_SIZE = 50;
 
 type PackageStatus =
   | "created"
@@ -110,6 +111,8 @@ export function HelperDashboardScreen({
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [helpRequests, setHelpRequests] = useState<HelpRequestRow[]>([]);
+  const [requestsHasMore, setRequestsHasMore] = useState(true);
+  const [loadingMoreRequests, setLoadingMoreRequests] = useState(false);
   const [packages, setPackages] = useState<PackageRow[]>([]);
   const [verifications, setVerifications] = useState<PackageVerificationRow[]>(
     [],
@@ -181,12 +184,13 @@ export function HelperDashboardScreen({
   }, []);
 
   const fetchHelpRequests = useCallback(
-    async (options?: { onlyOpen?: boolean }) => {
+    async (options?: { onlyOpen?: boolean; beforeCreatedAt?: string }) => {
       if (!supabase) {
         return null;
       }
 
       const onlyOpen = options?.onlyOpen ?? false;
+      const beforeCreatedAt = options?.beforeCreatedAt;
       const baseSelect =
         "id, client_name, requester_phone, target_ngo_name, target_state, target_district, target_city, message, status, lat, lng, created_at";
       const fallbackSelect =
@@ -196,13 +200,18 @@ export function HelperDashboardScreen({
         .from("help_requests")
         .select(baseSelect)
         .order("created_at", { ascending: false })
-        .limit(1000);
+        .limit(REQUESTS_PAGE_SIZE);
 
       let fallbackQuery = supabase
         .from("help_requests")
         .select(fallbackSelect)
         .order("created_at", { ascending: false })
-        .limit(1000);
+        .limit(REQUESTS_PAGE_SIZE);
+
+      if (beforeCreatedAt) {
+        richQuery = richQuery.lt("created_at", beforeCreatedAt);
+        fallbackQuery = fallbackQuery.lt("created_at", beforeCreatedAt);
+      }
 
       if (onlyOpen) {
         richQuery = richQuery.eq("status", "open");
@@ -219,15 +228,24 @@ export function HelperDashboardScreen({
           return null;
         }
 
-        return (minimalRequestsResult.data ?? []).map((row) => ({
+        const fallbackRows = (minimalRequestsResult.data ?? []).map((row) => ({
           ...(row as HelpRequestRow),
           requester_phone: null,
           target_state: null,
           target_district: null,
         }));
+
+        return {
+          rows: fallbackRows,
+          hasMore: fallbackRows.length === REQUESTS_PAGE_SIZE,
+        };
       }
 
-      return (richRequestsResult.data as HelpRequestRow[]) ?? [];
+      const rows = (richRequestsResult.data as HelpRequestRow[]) ?? [];
+      return {
+        rows,
+        hasMore: rows.length === REQUESTS_PAGE_SIZE,
+      };
     },
     [],
   );
@@ -256,9 +274,9 @@ export function HelperDashboardScreen({
         .limit(50),
     ]);
 
-    const requestsData = await fetchHelpRequests();
+    const requestsResult = await fetchHelpRequests();
 
-    if (!requestsData) {
+    if (!requestsResult) {
       return;
     }
 
@@ -273,7 +291,8 @@ export function HelperDashboardScreen({
     }
 
     setError(null);
-    setHelpRequests(requestsData);
+    setHelpRequests(requestsResult.rows);
+    setRequestsHasMore(requestsResult.hasMore);
     setPackages((packagesResult.data as PackageRow[]) ?? []);
     setVerifications(
       (verificationsResult.data as PackageVerificationRow[]) ?? [],
@@ -281,11 +300,13 @@ export function HelperDashboardScreen({
   }, [fetchHelpRequests, helperUserId]);
 
   const pollOpenHelpRequests = useCallback(async () => {
-    const openRequests = await fetchHelpRequests({ onlyOpen: true });
+    const openRequestsResult = await fetchHelpRequests({ onlyOpen: true });
 
-    if (!openRequests) {
+    if (!openRequestsResult) {
       return;
     }
+
+    const openRequests = openRequestsResult.rows;
 
     setHelpRequests((previous) => {
       const openById = new Map(
@@ -315,6 +336,46 @@ export function HelperDashboardScreen({
       return next;
     });
   }, [fetchHelpRequests]);
+
+  const loadMoreRequests = useCallback(async () => {
+    if (!requestsHasMore || loadingMoreRequests) {
+      return;
+    }
+
+    const lastCreatedAt = helpRequests[helpRequests.length - 1]?.created_at;
+    if (!lastCreatedAt) {
+      setRequestsHasMore(false);
+      return;
+    }
+
+    setLoadingMoreRequests(true);
+    const nextPage = await fetchHelpRequests({ beforeCreatedAt: lastCreatedAt });
+    setLoadingMoreRequests(false);
+
+    if (!nextPage) {
+      return;
+    }
+
+    setHelpRequests((previous) => {
+      const seen = new Set(previous.map((request) => request.id));
+      const merged = [...previous];
+
+      for (const request of nextPage.rows) {
+        if (!seen.has(request.id)) {
+          merged.push(request);
+          seen.add(request.id);
+        }
+      }
+
+      merged.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      );
+
+      return merged;
+    });
+    setRequestsHasMore(nextPage.hasMore);
+  }, [fetchHelpRequests, helpRequests, loadingMoreRequests, requestsHasMore]);
 
   const bootstrap = useCallback(async () => {
     if (!supabase) {
@@ -884,8 +945,9 @@ export function HelperDashboardScreen({
                   </Text>
                 </View>
               ) : (
-                filteredHelpRequests.map((request) => (
-                  <View key={request.id} style={styles.card}>
+                <>
+                  {filteredHelpRequests.map((request) => (
+                    <View key={request.id} style={styles.card}>
                     <View style={styles.requestTopRow}>
                       <View style={styles.requestTopTextWrap}>
                         <Text style={styles.meta}>
@@ -987,8 +1049,25 @@ export function HelperDashboardScreen({
                         </Text>
                       </Pressable>
                     ) : null}
-                  </View>
-                ))
+                    </View>
+                  ))}
+
+                  {requestFilter === "all" && requestsHasMore ? (
+                    <Pressable
+                      style={styles.secondaryButton}
+                      disabled={loadingMoreRequests}
+                      onPress={() => {
+                        void loadMoreRequests();
+                      }}
+                    >
+                      <Text style={styles.secondaryButtonText}>
+                        {loadingMoreRequests
+                          ? "Loading more..."
+                          : "Load older requests"}
+                      </Text>
+                    </Pressable>
+                  ) : null}
+                </>
               )}
             </View>
           ) : null}
