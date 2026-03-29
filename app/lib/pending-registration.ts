@@ -1,6 +1,5 @@
 type PendingRegistration = {
   email: string;
-  password: string;
 };
 
 let pendingRegistration: PendingRegistration | null = null;

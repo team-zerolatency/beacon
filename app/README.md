@@ -98,7 +98,9 @@ npx expo start -c
 ```
 
 2. Command fails from wrong directory:
+
 - Run commands inside this `app/` folder.
 
 3. Realtime feels delayed:
+
 - Confirm Realtime is enabled for `help_requests` and session is valid.

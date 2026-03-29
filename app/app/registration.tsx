@@ -22,7 +22,7 @@ export default function RegistrationScreen() {
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState(pending?.email ?? "");
-  const [password, setPassword] = useState(pending?.password ?? "");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -111,8 +111,8 @@ export default function RegistrationScreen() {
           <Text style={styles.kicker}>BEACON Registration</Text>
           <Text style={styles.title}>Create Account</Text>
           <Text style={styles.subtitle}>
-            We prefilled your credentials from login. Add your full name to
-            finish account setup.
+            We prefilled your email from login. Add your full name and password
+            to finish account setup.
           </Text>
 
           <TextInput

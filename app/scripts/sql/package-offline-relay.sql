@@ -585,31 +585,28 @@ begin
         open_sos_count bigint;
         recent_sos_count bigint;
       begin
-        -- Only enforce for emergency SOS messages
-        if new.message = ''Emergency'' then
-          -- Check for already-open SOS (any status other than resolved/cancelled)
-          select count(*)
-          into open_sos_count
-          from public.help_requests
-          where client_id = new.client_id
-            and status not in (''resolved'', ''cancelled'')
-            and message = ''Emergency'';
+        -- Enforce by client_id and time window regardless of message content.
+        -- Exclude the row being inserted in case a caller pre-populates id.
+        select count(*)
+        into open_sos_count
+        from public.help_requests
+        where client_id = new.client_id
+          and status not in (''resolved'', ''cancelled'')
+          and id <> coalesce(new.id, ''00000000-0000-0000-0000-000000000000''::uuid);
 
-          if open_sos_count > 0 then
-            raise exception ''You already have an open emergency request. Please wait for response.'';
-          end if;
+        if open_sos_count > 0 then
+          raise exception ''You already have an open request. Please wait for response.'';
+        end if;
 
-          -- Check for SOS created in the last 2 minutes
-          select count(*)
-          into recent_sos_count
-          from public.help_requests
-          where client_id = new.client_id
-            and message = ''Emergency''
-            and created_at > (now() - interval ''2 minutes'');
+        select count(*)
+        into recent_sos_count
+        from public.help_requests
+        where client_id = new.client_id
+          and created_at > (now() - interval ''2 minutes'')
+          and id <> coalesce(new.id, ''00000000-0000-0000-0000-000000000000''::uuid);
 
-          if recent_sos_count > 0 then
-            raise exception ''Emergency requests are rate limited to 1 per 2 minutes. Please wait before sending another.'';
-          end if;
+        if recent_sos_count > 0 then
+          raise exception ''Requests are rate limited to 1 per 2 minutes. Please wait before sending another.'';
         end if;
 
         return new;
@@ -636,9 +633,13 @@ begin
       as $helper_assignment$
       begin
         if public.current_user_type() = ''helper'' then
-          -- Helper can only modify requests assigned to them
-          if new.assigned_helper_id is null or new.assigned_helper_id <> auth.uid() then
+          -- Helper can only modify requests already assigned to them and cannot reassign.
+          if old.assigned_helper_id is null or old.assigned_helper_id <> auth.uid() then
             raise exception ''Helper can only modify requests assigned to them.'';
+          end if;
+
+          if new.assigned_helper_id is distinct from old.assigned_helper_id then
+            raise exception ''Helpers cannot change assignment.'';
           end if;
         end if;
         return new;

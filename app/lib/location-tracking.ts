@@ -13,7 +13,7 @@ import { supabase } from "./supabase";
 type LocationTrackingState = {
   requestId: string;
   requestClientId: string;
-  taskId?: string;
+  intervalHandle?: ReturnType<typeof setInterval>;
   lastUpdateTime: number;
 };
 
@@ -124,7 +124,7 @@ export async function startLocationTracking(
     }
   }, 45000); // Update every 45 seconds
 
-  trackingState.taskId = updateInterval.toString();
+  trackingState.intervalHandle = updateInterval;
 
   console.log(`[LocationTracking] Started tracking for request ${requestId}`);
 }
@@ -138,8 +138,8 @@ export async function stopLocationTracking(requestId: string): Promise<void> {
     return;
   }
 
-  if (trackingData.taskId) {
-    clearInterval(parseInt(trackingData.taskId, 10));
+  if (trackingData.intervalHandle) {
+    clearInterval(trackingData.intervalHandle);
   }
 
   activeTracking.delete(requestId);

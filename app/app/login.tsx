@@ -66,7 +66,7 @@ export default function LoginScreen() {
 
     setLoading(false);
     setError(signInError?.message ?? "Account not found. Please register.");
-    setPendingRegistration({ email: normalizedEmail, password });
+    setPendingRegistration({ email: normalizedEmail });
     router.push("/registration");
   }
 
