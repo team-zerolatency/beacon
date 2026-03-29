@@ -1,3 +1,11 @@
+import {
+  startLocationTracking,
+  stopLocationTracking,
+} from "@/lib/location-tracking";
+import {
+  ensureAuthenticatedWithRefresh,
+  isTokenExpiredError,
+} from "@/lib/session-management";
 import { supabase } from "@/lib/supabase";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
@@ -15,7 +23,8 @@ import {
   TextInput,
   View,
 } from "react-native";
-import MapView, { Marker, type Region } from "react-native-maps";
+import ClusteredMapView from "react-native-map-clustering";
+import { Marker, type Region } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type ClientTab = "sos" | "request" | "map" | "tracking" | "actions";
@@ -189,17 +198,42 @@ export function ClientDashboardScreen({
     null,
   );
   const [verifyingRequestLoading, setVerifyingRequestLoading] = useState(false);
+  const [locallyVerifiedRequestIds, setLocallyVerifiedRequestIds] = useState<
+    Record<string, true>
+  >({});
   const [mapLocating, setMapLocating] = useState(false);
   const [mapReady, setMapReady] = useState(false);
   const [lastMapRegion, setLastMapRegion] = useState<Region | null>(null);
   const [pullRefreshing, setPullRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-  const mapRef = useRef<MapView | null>(null);
+  const mapRef = useRef<any>(null);
   const pendingMapTabZoomRef = useRef(false);
   const skipNextFitRef = useRef(false);
   const sosScale = useRef(new Animated.Value(1)).current;
   const sosGlowOpacity = useRef(new Animated.Value(0.24)).current;
+
+  function getNativeMapRef() {
+    const map = mapRef.current;
+
+    if (!map) {
+      return null;
+    }
+
+    if (typeof map.animateToRegion === "function") {
+      return map;
+    }
+
+    if (typeof map.getMapRef === "function") {
+      return map.getMapRef();
+    }
+
+    if (map.mapRef && typeof map.mapRef.animateToRegion === "function") {
+      return map.mapRef;
+    }
+
+    return null;
+  }
 
   const selectedNgo =
     ngoDirectory.find((ngo) => ngo.id === selectedNgoId) ?? null;
@@ -267,6 +301,19 @@ export function ClientDashboardScreen({
 
     void bootstrap();
   }, []);
+
+  // Monitor request status and stop tracking when resolved/cancelled
+  useEffect(() => {
+    async function cleanupFinishedRequests() {
+      for (const request of myRequests) {
+        if (request.status === "resolved" || request.status === "cancelled") {
+          await stopLocationTracking(request.id);
+        }
+      }
+    }
+
+    void cleanupFinishedRequests();
+  }, [myRequests]);
 
   async function loadMine() {
     if (!supabase) {
@@ -504,11 +551,13 @@ export function ClientDashboardScreen({
       return;
     }
 
-    if (mapMarkers.length === 0 || !mapRef.current) {
+    const nativeMap = getNativeMapRef();
+
+    if (mapMarkers.length === 0 || !nativeMap) {
       return;
     }
 
-    mapRef.current.fitToCoordinates(
+    nativeMap.fitToCoordinates(
       mapMarkers.map((marker) => ({
         latitude: marker.lat,
         longitude: marker.lng,
@@ -551,7 +600,9 @@ export function ClientDashboardScreen({
         return false;
       }
 
-      mapRef.current?.animateToRegion(
+      const nativeMap = getNativeMapRef();
+
+      nativeMap?.animateToRegion(
         {
           latitude: lat,
           longitude: lng,
@@ -587,8 +638,10 @@ export function ClientDashboardScreen({
 
     void (async () => {
       const zoomed = await zoomToCurrentLocation({ silent: true });
-      if (!zoomed && lastMapRegion && mapRef.current) {
-        mapRef.current.animateToRegion(lastMapRegion, 500);
+      const nativeMap = getNativeMapRef();
+
+      if (!zoomed && lastMapRegion && nativeMap) {
+        nativeMap.animateToRegion(lastMapRegion, 500);
       }
     })();
   }, [dashboardView, activeTab, mapReady, lastMapRegion]);
@@ -849,6 +902,16 @@ export function ClientDashboardScreen({
     setError(null);
     setSuccess(null);
 
+    // Refresh session token before help submission
+    const authCheck = await ensureAuthenticatedWithRefresh();
+    if (!authCheck.success) {
+      setError(
+        authCheck.error ||
+          "Session expired. Please sign in again and try again.",
+      );
+      return;
+    }
+
     if (!clientName.trim()) {
       setError("Please enter your name.");
       return;
@@ -1008,6 +1071,16 @@ export function ClientDashboardScreen({
 
     setError(null);
     setSuccess(null);
+
+    // Refresh session token before SOS submission (handles long idle periods)
+    const authCheck = await ensureAuthenticatedWithRefresh();
+    if (!authCheck.success) {
+      setError(
+        authCheck.error ||
+          "Session expired. Please sign in again and try SOS again.",
+      );
+      return;
+    }
 
     const finalClientName = clientName.trim() || displayName.trim();
     if (!finalClientName) {
@@ -1230,12 +1303,28 @@ export function ClientDashboardScreen({
         detected_location_text: nextLocationText.trim() || null,
       };
 
-      const { error: insErrWithDetected } = await supabase
+      const { data: insertedData, error: insErrWithDetected } = await supabase
         .from("help_requests")
-        .insert(withDetectedPayload);
+        .insert(withDetectedPayload)
+        .select("id");
+
+      let createdRequestId: string | null = null;
 
       if (insErrWithDetected) {
+        // Check for rate limit errors
         const messageText = insErrWithDetected.message.toLowerCase();
+        const isRateLimitErr =
+          messageText.includes("already have an open") ||
+          messageText.includes("rate limited") ||
+          messageText.includes("emergency requests are rate");
+
+        if (isRateLimitErr) {
+          setError(
+            "SOS rate limited: You already have an open emergency request or sent one recently. Please wait before sending another.",
+          );
+          return;
+        }
+
         const missingDetectedColumns =
           messageText.includes("detected_state") ||
           messageText.includes("detected_district") ||
@@ -1243,18 +1332,64 @@ export function ClientDashboardScreen({
           messageText.includes("detected_location_text");
 
         if (missingDetectedColumns) {
-          const { error: fallbackErr } = await supabase
+          const { data: fallbackData, error: fallbackErr } = await supabase
             .from("help_requests")
-            .insert(basePayload);
+            .insert(basePayload)
+            .select("id");
 
           if (fallbackErr) {
-            setError(fallbackErr.message);
+            const fallbackMessageText = fallbackErr.message.toLowerCase();
+
+            // Check if error is token expiry
+            if (isTokenExpiredError(fallbackErr)) {
+              setError(
+                "Session expired. Please sign in again and try SOS again.",
+              );
+              return;
+            }
+
+            if (
+              fallbackMessageText.includes("already have an open") ||
+              fallbackMessageText.includes("rate limited") ||
+              fallbackMessageText.includes("emergency requests are rate")
+            ) {
+              setError(
+                "SOS rate limited: You already have an open emergency request or sent one recently. Please wait before sending another.",
+              );
+            } else {
+              setError(fallbackErr.message);
+            }
             return;
           }
+
+          createdRequestId = fallbackData?.[0]?.id ?? null;
         } else {
+          // Check if error is token expiry
+          if (isTokenExpiredError(insErrWithDetected)) {
+            setError(
+              "Session expired. Please sign in again and try SOS again.",
+            );
+            return;
+          }
+
           setError(insErrWithDetected.message);
           return;
         }
+      } else {
+        createdRequestId = insertedData?.[0]?.id ?? null;
+      }
+
+      if (!createdRequestId) {
+        setError("SOS created but could not start location tracking.");
+        return;
+      }
+
+      // Start continuous location tracking for this request
+      try {
+        await startLocationTracking(createdRequestId, user.id);
+      } catch (trackingErr) {
+        console.warn("[SOS] Location tracking failed to start:", trackingErr);
+        // Non-fatal: SOS is created, but location won't auto-update
       }
     } catch {
       setError("Could not send SOS request. Please try again.");
@@ -1301,6 +1436,9 @@ export function ClientDashboardScreen({
       setError(uErr.message);
       return;
     }
+
+    // Stop location tracking for the cancelled request
+    await stopLocationTracking(id);
 
     setCancelingRequestId(null);
     await loadMine();
@@ -1349,12 +1487,25 @@ export function ClientDashboardScreen({
 
       if (verifyErr) {
         if (hasMissingVerificationColumn(verifyErr.message)) {
+          setLocallyVerifiedRequestIds((prev) => ({
+            ...prev,
+            [requestId]: true,
+          }));
+          setMyRequests((prev) =>
+            prev.map((request) =>
+              request.id === requestId
+                ? {
+                    ...request,
+                    verification_status: "verified",
+                  }
+                : request,
+            ),
+          );
           setVerifyingRequestLoading(false);
           setVerifyingRequestId(null);
           setSuccess(
             "Resolution confirmed. Verification columns are missing in DB, so audit fields were skipped.",
           );
-          await loadMine();
           return;
         }
 
@@ -1367,6 +1518,14 @@ export function ClientDashboardScreen({
       setVerifyingRequestLoading(false);
       setVerifyingRequestId(null);
       setSuccess("Thank you for confirming the resolution!");
+      setLocallyVerifiedRequestIds((prev) => ({
+        ...prev,
+        [requestId]: true,
+      }));
+
+      // Stop location tracking since request is now resolved
+      await stopLocationTracking(requestId);
+
       setMyRequests((prev) =>
         prev.map((request) =>
           request.id === requestId
@@ -1434,6 +1593,15 @@ export function ClientDashboardScreen({
 
     setVerifyingRequestLoading(false);
     setVerifyingRequestId(null);
+    setLocallyVerifiedRequestIds((prev) => {
+      if (!prev[requestId]) {
+        return prev;
+      }
+
+      const next = { ...prev };
+      delete next[requestId];
+      return next;
+    });
     if (usedMissingColumnFallback) {
       setSuccess(
         "Request reverted to in progress and NGO notified. Verification audit columns are missing in DB.",
@@ -1947,7 +2115,7 @@ export function ClientDashboardScreen({
                   </Pressable>
 
                   <View style={styles.mapCanvasWrap}>
-                    <MapView
+                    <ClusteredMapView
                       ref={(ref) => {
                         mapRef.current = ref;
                       }}
@@ -1993,7 +2161,7 @@ export function ClientDashboardScreen({
                           pinColor="#8B5CF6"
                         />
                       ) : null}
-                    </MapView>
+                    </ClusteredMapView>
                   </View>
 
                   <Text style={styles.mapLegendText}>
@@ -2059,6 +2227,7 @@ export function ClientDashboardScreen({
                       req.verification_status,
                     );
                     const isClientVerified =
+                      Boolean(locallyVerifiedRequestIds[req.id]) ||
                       normalizedVerificationStatus === "verified" ||
                       normalizedVerificationStatus === "verifed";
 
@@ -2103,56 +2272,61 @@ export function ClientDashboardScreen({
                           </Pressable>
                         ) : null}
                         {req.status === "resolved" && !isClientVerified ? (
-                          <View style={styles.modalButtonRow}>
-                            <Pressable
-                              style={[
-                                styles.modalButton,
-                                styles.modalButtonNo,
-                                verifyingRequestLoading &&
-                                verifyingRequestId === req.id
-                                  ? styles.buttonDisabled
-                                  : null,
-                              ]}
-                              disabled={
-                                verifyingRequestLoading &&
-                                verifyingRequestId === req.id
-                              }
-                              onPress={() => {
-                                void handleVerifyResolution(req.id, false);
-                              }}
-                            >
-                              <Text style={styles.modalButtonNoText}>
-                                {verifyingRequestLoading &&
-                                verifyingRequestId === req.id
-                                  ? "Processing..."
-                                  : "No"}
-                              </Text>
-                            </Pressable>
+                          <View style={styles.verifyResolutionBlock}>
+                            <Text style={styles.verifyResolutionPrompt}>
+                              Did the NGO fully resolve your request?
+                            </Text>
+                            <View style={styles.verifyResolutionActions}>
+                              <Pressable
+                                style={[
+                                  styles.modalButton,
+                                  styles.modalButtonNo,
+                                  verifyingRequestLoading &&
+                                  verifyingRequestId === req.id
+                                    ? styles.buttonDisabled
+                                    : null,
+                                ]}
+                                disabled={
+                                  verifyingRequestLoading &&
+                                  verifyingRequestId === req.id
+                                }
+                                onPress={() => {
+                                  void handleVerifyResolution(req.id, false);
+                                }}
+                              >
+                                <Text style={styles.modalButtonNoText}>
+                                  {verifyingRequestLoading &&
+                                  verifyingRequestId === req.id
+                                    ? "Processing..."
+                                    : "Still need help"}
+                                </Text>
+                              </Pressable>
 
-                            <Pressable
-                              style={[
-                                styles.modalButton,
-                                styles.modalButtonYes,
-                                verifyingRequestLoading &&
-                                verifyingRequestId === req.id
-                                  ? styles.buttonDisabled
-                                  : null,
-                              ]}
-                              disabled={
-                                verifyingRequestLoading &&
-                                verifyingRequestId === req.id
-                              }
-                              onPress={() => {
-                                void handleVerifyResolution(req.id, true);
-                              }}
-                            >
-                              <Text style={styles.modalButtonYesText}>
-                                {verifyingRequestLoading &&
-                                verifyingRequestId === req.id
-                                  ? "Processing..."
-                                  : "Yes"}
-                              </Text>
-                            </Pressable>
+                              <Pressable
+                                style={[
+                                  styles.modalButton,
+                                  styles.modalButtonYes,
+                                  verifyingRequestLoading &&
+                                  verifyingRequestId === req.id
+                                    ? styles.buttonDisabled
+                                    : null,
+                                ]}
+                                disabled={
+                                  verifyingRequestLoading &&
+                                  verifyingRequestId === req.id
+                                }
+                                onPress={() => {
+                                  void handleVerifyResolution(req.id, true);
+                                }}
+                              >
+                                <Text style={styles.modalButtonYesText}>
+                                  {verifyingRequestLoading &&
+                                  verifyingRequestId === req.id
+                                    ? "Processing..."
+                                    : "Confirm resolved"}
+                                </Text>
+                              </Pressable>
+                            </View>
                           </View>
                         ) : null}
                         {req.status === "resolved" && isClientVerified ? (
@@ -2805,6 +2979,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     marginTop: 8,
+  },
+  verifyResolutionBlock: {
+    marginTop: 10,
+    gap: 8,
+  },
+  verifyResolutionPrompt: {
+    color: "#D4D4D4",
+    fontSize: 13,
+    fontWeight: "600",
+    lineHeight: 18,
+  },
+  verifyResolutionActions: {
+    flexDirection: "row",
+    gap: 10,
   },
   modalButton: {
     flex: 1,

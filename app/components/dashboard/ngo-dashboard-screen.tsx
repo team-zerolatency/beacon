@@ -1,3 +1,4 @@
+import { registerDevicePushToken } from "@/lib/push-notifications";
 import { supabase } from "@/lib/supabase";
 import { Ionicons } from "@expo/vector-icons";
 import Constants from "expo-constants";
@@ -13,7 +14,8 @@ import {
   Text,
   View,
 } from "react-native";
-import MapView, { Marker, type Region } from "react-native-maps";
+import ClusteredMapView from "react-native-map-clustering";
+import { Marker, type Region } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type NotificationsModule = typeof import("expo-notifications");
@@ -30,15 +32,19 @@ function getNotificationsModule(): NotificationsModule | null {
   }
 }
 
-type NgoTab = "overview" | "map" | "actions";
+type NgoTab = "overview" | "analytics" | "map" | "actions";
 type DashboardView = "home" | "requests" | "profile";
 type RequestStatus = "open" | "in_progress" | "resolved" | "cancelled";
 
-const NGO_HOME_TABS: NgoTab[] = ["overview", "map", "actions"];
+const NGO_HOME_TABS: NgoTab[] = ["overview", "analytics", "map", "actions"];
 
 function getNgoTabLabel(tab: NgoTab) {
   if (tab === "overview") {
     return "Overview";
+  }
+
+  if (tab === "analytics") {
+    return "Analytics";
   }
 
   if (tab === "map") {
@@ -54,6 +60,10 @@ function getNgoTabIcon(
 ): keyof typeof Ionicons.glyphMap {
   if (tab === "overview") {
     return active ? "analytics" : "analytics-outline";
+  }
+
+  if (tab === "analytics") {
+    return active ? "stats-chart" : "stats-chart-outline";
   }
 
   if (tab === "map") {
@@ -98,9 +108,13 @@ type HelpRequestRow = {
   client_name: string | null;
   requester_phone: string | null;
   target_ngo_name: string | null;
+  target_district?: string | null;
   target_city: string | null;
   message: string;
   status: RequestStatus;
+  assigned_helper_id?: string | null;
+  resolved_at?: string | null;
+  updated_at?: string | null;
   lat: number;
   lng: number;
   created_at: string;
@@ -135,13 +149,35 @@ export function NgoDashboardScreen({
   const [pullRefreshing, setPullRefreshing] = useState(false);
   const [unreadOpenCount, setUnreadOpenCount] = useState(0);
 
-  const mapRef = useRef<MapView | null>(null);
+  const mapRef = useRef<any>(null);
   const pendingMapTabZoomRef = useRef(false);
   const skipNextFitRef = useRef(false);
   const dashboardViewRef = useRef<DashboardView>("home");
   const notificationsRef = useRef<NotificationsModule | null>(null);
   const knownRequestIdsRef = useRef<Set<string>>(new Set());
   const hasLoadedRequestsRef = useRef(false);
+
+  function getNativeMapRef() {
+    const map = mapRef.current;
+
+    if (!map) {
+      return null;
+    }
+
+    if (typeof map.animateToRegion === "function") {
+      return map;
+    }
+
+    if (typeof map.getMapRef === "function") {
+      return map.getMapRef();
+    }
+
+    if (map.mapRef && typeof map.mapRef.animateToRegion === "function") {
+      return map.mapRef;
+    }
+
+    return null;
+  }
 
   useEffect(() => {
     dashboardViewRef.current = dashboardView;
@@ -187,6 +223,128 @@ export function NgoDashboardScreen({
       ),
     [helpRequests],
   );
+
+  const averageResponseLabel = useMemo(() => {
+    const completed = helpRequests.filter(
+      (request) =>
+        request.status === "resolved" || request.status === "cancelled",
+    );
+
+    const durationsInHours: number[] = [];
+
+    for (const request of completed) {
+      const startedAt = new Date(request.created_at).getTime();
+      const resolvedAtRaw = request.resolved_at ?? request.updated_at;
+
+      if (!resolvedAtRaw) {
+        continue;
+      }
+
+      const resolvedAt = new Date(resolvedAtRaw).getTime();
+
+      if (!Number.isFinite(startedAt) || !Number.isFinite(resolvedAt)) {
+        continue;
+      }
+
+      const durationMs = resolvedAt - startedAt;
+      if (durationMs > 0) {
+        durationsInHours.push(durationMs / (1000 * 60 * 60));
+      }
+    }
+
+    if (durationsInHours.length === 0) {
+      return "Not enough completed data";
+    }
+
+    const avgHours =
+      durationsInHours.reduce((sum, value) => sum + value, 0) /
+      durationsInHours.length;
+
+    if (avgHours < 1) {
+      return `${Math.max(1, Math.round(avgHours * 60))} min`;
+    }
+
+    return `${avgHours.toFixed(1)} hrs`;
+  }, [helpRequests]);
+
+  const unresolvedDistricts = useMemo(() => {
+    const counts: Record<string, number> = {};
+
+    for (const request of helpRequests) {
+      if (request.status !== "open" && request.status !== "in_progress") {
+        continue;
+      }
+
+      const district =
+        request.target_district?.trim() ||
+        request.target_city?.trim() ||
+        "Unknown area";
+
+      counts[district] = (counts[district] ?? 0) + 1;
+    }
+
+    return Object.entries(counts)
+      .map(([district, count]) => ({ district, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+  }, [helpRequests]);
+
+  const helperActivity = useMemo(() => {
+    const byHelper: Record<
+      string,
+      { lastActivityMs: number; unresolvedCount: number }
+    > = {};
+
+    for (const request of helpRequests) {
+      const helperId = request.assigned_helper_id?.trim();
+      if (!helperId) {
+        continue;
+      }
+
+      const candidateTime =
+        request.updated_at ?? request.resolved_at ?? request.created_at;
+      const timestamp = new Date(candidateTime).getTime();
+
+      if (!byHelper[helperId]) {
+        byHelper[helperId] = {
+          lastActivityMs: Number.isFinite(timestamp) ? timestamp : 0,
+          unresolvedCount:
+            request.status === "open" || request.status === "in_progress"
+              ? 1
+              : 0,
+        };
+        continue;
+      }
+
+      byHelper[helperId].lastActivityMs = Math.max(
+        byHelper[helperId].lastActivityMs,
+        Number.isFinite(timestamp) ? timestamp : 0,
+      );
+
+      if (request.status === "open" || request.status === "in_progress") {
+        byHelper[helperId].unresolvedCount += 1;
+      }
+    }
+
+    const now = Date.now();
+    const inactiveThresholdMs = 24 * 60 * 60 * 1000;
+
+    const inactive = Object.entries(byHelper)
+      .filter(
+        ([, activity]) => now - activity.lastActivityMs > inactiveThresholdMs,
+      )
+      .map(([helperId, activity]) => ({
+        helperId,
+        unresolvedCount: activity.unresolvedCount,
+      }))
+      .sort((a, b) => b.unresolvedCount - a.unresolvedCount)
+      .slice(0, 5);
+
+    return {
+      inactive,
+      trackedHelpers: Object.keys(byHelper).length,
+    };
+  }, [helpRequests]);
 
   const mapMarkers = useMemo(() => {
     const ngoMarkers = mapLocations.map((loc) => ({
@@ -276,11 +434,6 @@ export function NgoDashboardScreen({
       });
 
       void (async () => {
-        const perms = await notifications.getPermissionsAsync();
-        if (perms.status !== "granted") {
-          await notifications.requestPermissionsAsync();
-        }
-
         if (Platform.OS === "android") {
           await notifications.setNotificationChannelAsync("requests", {
             name: "New Requests",
@@ -289,6 +442,20 @@ export function NgoDashboardScreen({
             lightColor: "#F97316",
           });
         }
+
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) {
+          return;
+        }
+
+        await registerDevicePushToken({
+          notifications,
+          userId: user.id,
+          role: "ngo",
+        });
       })();
     }
 
@@ -363,11 +530,13 @@ export function NgoDashboardScreen({
       return;
     }
 
-    if (mapMarkers.length === 0 || !mapRef.current) {
+    const nativeMap = getNativeMapRef();
+
+    if (mapMarkers.length === 0 || !nativeMap) {
       return;
     }
 
-    mapRef.current.fitToCoordinates(
+    nativeMap.fitToCoordinates(
       mapMarkers.map((marker) => ({
         latitude: marker.lat,
         longitude: marker.lng,
@@ -393,8 +562,10 @@ export function NgoDashboardScreen({
 
     void (async () => {
       const zoomed = await zoomToCurrentLocation({ silent: true });
-      if (!zoomed && lastMapRegion && mapRef.current) {
-        mapRef.current.animateToRegion(lastMapRegion, 500);
+      const nativeMap = getNativeMapRef();
+
+      if (!zoomed && lastMapRegion && nativeMap) {
+        nativeMap.animateToRegion(lastMapRegion, 500);
       }
     })();
   }, [dashboardView, activeTab, mapReady, lastMapRegion]);
@@ -482,19 +653,41 @@ export function NgoDashboardScreen({
       return;
     }
 
-    const { data, error: qErr } = await supabase
+    const richResult = await supabase
       .from("help_requests")
       .select(
-        "id,client_name,requester_phone,target_ngo_name,target_city,message,status,lat,lng,created_at",
+        "id,client_name,requester_phone,target_ngo_name,target_district,target_city,message,status,assigned_helper_id,lat,lng,created_at,updated_at,resolved_at",
       )
       .order("created_at", { ascending: false });
 
-    if (qErr) {
-      setError(qErr.message);
-      return;
+    let nextRequests: HelpRequestRow[] = [];
+
+    if (!richResult.error) {
+      nextRequests = (richResult.data ?? []) as HelpRequestRow[];
+    } else {
+      const fallbackResult = await supabase
+        .from("help_requests")
+        .select(
+          "id,client_name,requester_phone,target_ngo_name,target_city,message,status,lat,lng,created_at",
+        )
+        .order("created_at", { ascending: false });
+
+      if (fallbackResult.error) {
+        setError(fallbackResult.error.message);
+        return;
+      }
+
+      nextRequests = ((fallbackResult.data ?? []) as HelpRequestRow[]).map(
+        (row) => ({
+          ...row,
+          target_district: null,
+          assigned_helper_id: null,
+          updated_at: null,
+          resolved_at: null,
+        }),
+      );
     }
 
-    const nextRequests = (data ?? []) as HelpRequestRow[];
     const knownIds = knownRequestIdsRef.current;
     const newOpenRequests = nextRequests.filter(
       (req) => req.status === "open" && !knownIds.has(req.id),
@@ -627,7 +820,9 @@ export function NgoDashboardScreen({
         return false;
       }
 
-      mapRef.current?.animateToRegion(
+      const nativeMap = getNativeMapRef();
+
+      nativeMap?.animateToRegion(
         {
           latitude: lat,
           longitude: lng,
@@ -777,6 +972,88 @@ export function NgoDashboardScreen({
                 </View>
               ) : null}
 
+              {activeTab === "analytics" ? (
+                <View style={styles.panel}>
+                  <Text style={styles.panelTitle}>Coordination Analytics</Text>
+                  <Text style={styles.panelText}>
+                    Aggregated insights from help request activity to support
+                    dispatch decisions.
+                  </Text>
+
+                  <View style={styles.statsRow}>
+                    <View style={styles.statBox}>
+                      <Text style={styles.statValue}>
+                        {averageResponseLabel}
+                      </Text>
+                      <Text style={styles.statLabel}>Avg Response Time</Text>
+                    </View>
+                    <View style={styles.statBox}>
+                      <Text style={styles.statValue}>
+                        {unresolvedDistricts[0]?.count ?? 0}
+                      </Text>
+                      <Text style={styles.statLabel}>Top District Backlog</Text>
+                    </View>
+                    <View style={styles.statBox}>
+                      <Text style={styles.statValue}>
+                        {helperActivity.inactive.length}
+                      </Text>
+                      <Text style={styles.statLabel}>
+                        Inactive Helpers (24h)
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.analyticsSection}>
+                    <Text style={styles.analyticsSectionTitle}>
+                      Districts With Most Unresolved
+                    </Text>
+                    {unresolvedDistricts.length === 0 ? (
+                      <Text style={styles.panelText}>
+                        No unresolved requests.
+                      </Text>
+                    ) : (
+                      unresolvedDistricts.map((item) => (
+                        <View key={item.district} style={styles.analyticsRow}>
+                          <Text style={styles.analyticsKey}>
+                            {item.district}
+                          </Text>
+                          <Text style={styles.analyticsValue}>
+                            {item.count}
+                          </Text>
+                        </View>
+                      ))
+                    )}
+                  </View>
+
+                  <View style={styles.analyticsSection}>
+                    <Text style={styles.analyticsSectionTitle}>
+                      Inactive Helpers (No Activity in 24h)
+                    </Text>
+                    <Text style={styles.analyticsHint}>
+                      Tracked helpers with assignment data:{" "}
+                      {helperActivity.trackedHelpers}
+                    </Text>
+                    {helperActivity.inactive.length === 0 ? (
+                      <Text style={styles.panelText}>
+                        No inactive helpers detected from current request
+                        history.
+                      </Text>
+                    ) : (
+                      helperActivity.inactive.map((item) => (
+                        <View key={item.helperId} style={styles.analyticsRow}>
+                          <Text style={styles.analyticsKey}>
+                            Helper {item.helperId.slice(0, 8).toUpperCase()}
+                          </Text>
+                          <Text style={styles.analyticsValue}>
+                            {item.unresolvedCount} unresolved
+                          </Text>
+                        </View>
+                      ))
+                    )}
+                  </View>
+                </View>
+              ) : null}
+
               {activeTab === "map" ? (
                 <View style={styles.panel}>
                   <Text style={styles.panelTitle}>NGO + Help Map</Text>
@@ -801,7 +1078,7 @@ export function NgoDashboardScreen({
                   </Pressable>
 
                   <View style={styles.mapCanvasWrap}>
-                    <MapView
+                    <ClusteredMapView
                       ref={(ref) => {
                         mapRef.current = ref;
                       }}
@@ -847,7 +1124,7 @@ export function NgoDashboardScreen({
                           pinColor="#8B5CF6"
                         />
                       ) : null}
-                    </MapView>
+                    </ClusteredMapView>
                   </View>
                 </View>
               ) : null}
@@ -1251,6 +1528,47 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "700",
     fontSize: 13,
+  },
+  analyticsSection: {
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#2A2A2A",
+    backgroundColor: "#0D0D0D",
+    padding: 10,
+    gap: 8,
+  },
+  analyticsSectionTitle: {
+    color: "#FFFFFF",
+    fontSize: 13,
+    fontWeight: "800",
+  },
+  analyticsHint: {
+    color: "#94A3B8",
+    fontSize: 11,
+    fontWeight: "600",
+  },
+  analyticsRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#242424",
+    backgroundColor: "#111111",
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    gap: 8,
+  },
+  analyticsKey: {
+    color: "#E5E7EB",
+    fontSize: 12,
+    fontWeight: "700",
+    flex: 1,
+  },
+  analyticsValue: {
+    color: "#FDBA74",
+    fontSize: 12,
+    fontWeight: "800",
   },
   requestCard: {
     borderRadius: 12,

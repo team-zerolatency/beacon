@@ -88,6 +88,22 @@ export async function enqueuePackageEvent(input: {
   state.outbox.push(event);
   await saveState(state);
 
+  // Also persist to SQLite for crash-safety on low-RAM Android
+  try {
+    await persistOfflineEvent(input.packageId, {
+      eventType: input.eventType,
+      status: input.status,
+      payload: input.payload ?? {},
+      sourceUserId: input.sourceUserId ?? null,
+      idempotencyKey: input.idempotencyKey ?? makeId(),
+    });
+  } catch (err) {
+    console.warn(
+      "[OfflineQueue] SQLite persistence failed, relying on AsyncStorage:",
+      err,
+    );
+  }
+
   return event;
 }
 

@@ -180,6 +180,58 @@ export function HelperDashboardScreen({
     setPendingCount(pending.length);
   }, []);
 
+  const fetchHelpRequests = useCallback(
+    async (options?: { onlyOpen?: boolean }) => {
+      if (!supabase) {
+        return null;
+      }
+
+      const onlyOpen = options?.onlyOpen ?? false;
+      const baseSelect =
+        "id, client_name, requester_phone, target_ngo_name, target_state, target_district, target_city, message, status, lat, lng, created_at";
+      const fallbackSelect =
+        "id, client_name, target_ngo_name, target_city, message, status, lat, lng, created_at";
+
+      let richQuery = supabase
+        .from("help_requests")
+        .select(baseSelect)
+        .order("created_at", { ascending: false })
+        .limit(1000);
+
+      let fallbackQuery = supabase
+        .from("help_requests")
+        .select(fallbackSelect)
+        .order("created_at", { ascending: false })
+        .limit(1000);
+
+      if (onlyOpen) {
+        richQuery = richQuery.eq("status", "open");
+        fallbackQuery = fallbackQuery.eq("status", "open");
+      }
+
+      const richRequestsResult = await richQuery;
+
+      if (richRequestsResult.error) {
+        const minimalRequestsResult = await fallbackQuery;
+
+        if (minimalRequestsResult.error) {
+          setError(minimalRequestsResult.error.message);
+          return null;
+        }
+
+        return (minimalRequestsResult.data ?? []).map((row) => ({
+          ...(row as HelpRequestRow),
+          requester_phone: null,
+          target_state: null,
+          target_district: null,
+        }));
+      }
+
+      return (richRequestsResult.data as HelpRequestRow[]) ?? [];
+    },
+    [],
+  );
+
   const loadDashboardData = useCallback(async () => {
     if (!supabase || !helperUserId) {
       return;
@@ -204,38 +256,10 @@ export function HelperDashboardScreen({
         .limit(50),
     ]);
 
-    let requestsData: HelpRequestRow[] = [];
+    const requestsData = await fetchHelpRequests();
 
-    const richRequestsResult = await supabase
-      .from("help_requests")
-      .select(
-        "id, client_name, requester_phone, target_ngo_name, target_state, target_district, target_city, message, status, lat, lng, created_at",
-      )
-      .order("created_at", { ascending: false })
-      .limit(1000);
-
-    if (richRequestsResult.error) {
-      const minimalRequestsResult = await supabase
-        .from("help_requests")
-        .select(
-          "id, client_name, target_ngo_name, target_city, message, status, lat, lng, created_at",
-        )
-        .order("created_at", { ascending: false })
-        .limit(1000);
-
-      if (minimalRequestsResult.error) {
-        setError(minimalRequestsResult.error.message);
-        return;
-      }
-
-      requestsData = (minimalRequestsResult.data ?? []).map((row) => ({
-        ...(row as HelpRequestRow),
-        requester_phone: null,
-        target_state: null,
-        target_district: null,
-      }));
-    } else {
-      requestsData = (richRequestsResult.data as HelpRequestRow[]) ?? [];
+    if (!requestsData) {
+      return;
     }
 
     if (packagesResult.error) {
@@ -254,7 +278,43 @@ export function HelperDashboardScreen({
     setVerifications(
       (verificationsResult.data as PackageVerificationRow[]) ?? [],
     );
-  }, [helperUserId]);
+  }, [fetchHelpRequests, helperUserId]);
+
+  const pollOpenHelpRequests = useCallback(async () => {
+    const openRequests = await fetchHelpRequests({ onlyOpen: true });
+
+    if (!openRequests) {
+      return;
+    }
+
+    setHelpRequests((previous) => {
+      const openById = new Map(
+        openRequests.map((request) => [request.id, request]),
+      );
+      const next = previous.map((request) => {
+        if (request.status !== "open") {
+          return request;
+        }
+
+        return openById.get(request.id) ?? request;
+      });
+
+      const existingIds = new Set(next.map((request) => request.id));
+
+      for (const openRequest of openRequests) {
+        if (!existingIds.has(openRequest.id)) {
+          next.push(openRequest);
+        }
+      }
+
+      next.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      );
+
+      return next;
+    });
+  }, [fetchHelpRequests]);
 
   const bootstrap = useCallback(async () => {
     if (!supabase) {
@@ -333,15 +393,20 @@ export function HelperDashboardScreen({
       )
       .subscribe();
 
-    const interval = setInterval(() => {
+    const fullRefreshInterval = setInterval(() => {
       void loadDashboardData();
     }, 12000);
 
+    const openRequestsInterval = setInterval(() => {
+      void pollOpenHelpRequests();
+    }, 4000);
+
     return () => {
-      clearInterval(interval);
+      clearInterval(fullRefreshInterval);
+      clearInterval(openRequestsInterval);
       void client.removeChannel(channel);
     };
-  }, [helperUserId, loadDashboardData]);
+  }, [helperUserId, loadDashboardData, pollOpenHelpRequests]);
 
   useEffect(() => {
     async function syncWhenOnline() {

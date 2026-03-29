@@ -574,6 +574,121 @@ begin
       for each row
       execute procedure public.prevent_helper_resolve_help_requests()
     ';
+
+    -- SOS rate limiting: one open SOS per user, 2-minute cooldown
+    execute '
+      create or replace function public.enforce_sos_rate_limit()
+      returns trigger
+      language plpgsql
+      as $sos_rate_limit$
+      declare
+        open_sos_count bigint;
+        recent_sos_count bigint;
+      begin
+        -- Only enforce for emergency SOS messages
+        if new.message = ''Emergency'' then
+          -- Check for already-open SOS (any status other than resolved/cancelled)
+          select count(*)
+          into open_sos_count
+          from public.help_requests
+          where client_id = new.client_id
+            and status not in (''resolved'', ''cancelled'')
+            and message = ''Emergency'';
+
+          if open_sos_count > 0 then
+            raise exception ''You already have an open emergency request. Please wait for response.'';
+          end if;
+
+          -- Check for SOS created in the last 2 minutes
+          select count(*)
+          into recent_sos_count
+          from public.help_requests
+          where client_id = new.client_id
+            and message = ''Emergency''
+            and created_at > (now() - interval ''2 minutes'');
+
+          if recent_sos_count > 0 then
+            raise exception ''Emergency requests are rate limited to 1 per 2 minutes. Please wait before sending another.'';
+          end if;
+        end if;
+
+        return new;
+      end;
+      $sos_rate_limit$
+    ';
+
+    execute 'drop trigger if exists "trg_help_requests_enforce_sos_rate_limit" on public.help_requests';
+    execute '
+      create trigger "trg_help_requests_enforce_sos_rate_limit"
+      before insert on public.help_requests
+      for each row
+      execute procedure public.enforce_sos_rate_limit()
+    ';
+
+    -- Helper assignment constraint: add assigned_helper_id column
+    execute 'alter table public.help_requests add column if not exists assigned_helper_id uuid references auth.users(id) on delete set null';
+
+    -- Enforce helper can only modify requests assigned to them
+    execute '
+      create or replace function public.enforce_helper_assignment_constraint()
+      returns trigger
+      language plpgsql
+      as $helper_assignment$
+      begin
+        if public.current_user_type() = ''helper'' then
+          -- Helper can only modify requests assigned to them
+          if new.assigned_helper_id is null or new.assigned_helper_id <> auth.uid() then
+            raise exception ''Helper can only modify requests assigned to them.'';
+          end if;
+        end if;
+        return new;
+      end;
+      $helper_assignment$
+    ';
+
+    execute 'drop trigger if exists "trg_help_requests_helper_assignment" on public.help_requests';
+    execute '
+      create trigger "trg_help_requests_helper_assignment"
+      before update on public.help_requests
+      for each row
+      execute procedure public.enforce_helper_assignment_constraint()
+    ';
+
+    -- Stricter RLS for helpers: only see/update requests assigned to them
+    execute 'drop policy if exists "help_requests_helper_ngo_select" on public.help_requests';
+    execute '
+      create policy "help_requests_helper_ngo_select"
+      on public.help_requests
+      for select
+      using (
+        auth.role() = ''authenticated''
+        and (
+          public.current_user_type() = ''ngo''
+          or (public.current_user_type() = ''helper'' and assigned_helper_id = auth.uid())
+        )
+      )
+    ';
+
+    execute 'drop policy if exists "help_requests_helper_ngo_update_status" on public.help_requests';
+    execute '
+      create policy "help_requests_helper_ngo_update_status"
+      on public.help_requests
+      for update
+      using (
+        auth.role() = ''authenticated''
+        and (
+          public.current_user_type() = ''ngo''
+          or (public.current_user_type() = ''helper'' and assigned_helper_id = auth.uid())
+        )
+      )
+      with check (
+        auth.role() = ''authenticated''
+        and (
+          public.current_user_type() = ''ngo''
+          or (public.current_user_type() = ''helper'' and assigned_helper_id = auth.uid())
+        )
+      )
+    ';
   end if;
 end;
 $$;

@@ -3,6 +3,7 @@
 Beacon is a React Native mobile app for emergency help coordination.
 
 It supports:
+
 - Client flow: send help requests, capture location, track request status, view NGO/help map.
 - NGO flow: view incoming requests, update status, map coverage view, unread indicator for new open requests.
 
@@ -13,7 +14,9 @@ It supports:
 - TypeScript
 - Supabase (Auth + Postgres + Realtime)
 - react-native-maps
+- react-native-map-clustering
 - expo-location
+- expo-notifications
 
 ## Project Structure
 
@@ -83,12 +86,14 @@ npx expo start -c
 ## Key Product Behavior
 
 ### Client
+
 - Name is auto-filled from profile and fixed.
 - Help request includes selected NGO target details.
 - Location can be captured and used for auto-fill and coordinates.
 - Cancel removes the request entry (delete) when policy allows.
 
 ### NGO
+
 - Realtime + polling fallback keeps request list up to date.
 - New open requests increase unread indicator on Requests tab.
 - In Expo Go, local OS notifications are limited; in-app alert fallback is used.
@@ -98,6 +103,42 @@ npx expo start -c
 Expo Go has platform limitations for push/advanced notification behavior on newer SDKs.
 
 For full notification behavior, use a development build or production build.
+
+## Server Push Setup (New Open SOS)
+
+To notify NGO devices in the background when a new request is inserted with `status = open`:
+
+1. Apply SQL:
+
+```sql
+-- Run contents of scripts/sql/push-open-request-notify.sql in Supabase SQL editor
+```
+
+2. Deploy edge function:
+
+```bash
+supabase functions deploy notify-new-open-request
+```
+
+3. Set edge function secret:
+
+```bash
+supabase secrets set PUSH_WEBHOOK_SECRET=<strong-random-secret>
+```
+
+4. Set runtime config values in DB:
+
+```sql
+insert into public.push_runtime_config (key, value)
+values
+   ('new_open_request_push_url', 'https://<project-ref>.functions.supabase.co/notify-new-open-request'),
+   ('new_open_request_push_secret', '<strong-random-secret>')
+on conflict (key) do update set value = excluded.value;
+```
+
+5. Ensure NGO users open the app once after login so `device_push_tokens` can be registered.
+
+The app now renders clustered markers in both client and NGO map tabs for high-density response areas.
 
 ## Troubleshooting
 
