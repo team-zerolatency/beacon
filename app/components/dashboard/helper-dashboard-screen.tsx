@@ -349,7 +349,9 @@ export function HelperDashboardScreen({
     }
 
     setLoadingMoreRequests(true);
-    const nextPage = await fetchHelpRequests({ beforeCreatedAt: lastCreatedAt });
+    const nextPage = await fetchHelpRequests({
+      beforeCreatedAt: lastCreatedAt,
+    });
     setLoadingMoreRequests(false);
 
     if (!nextPage) {
@@ -477,6 +479,11 @@ export function HelperDashboardScreen({
 
       const result = await flushPackageOutbox();
       await Promise.all([refreshPendingCount(), loadDashboardData()]);
+
+      if (result.errorMessage) {
+        setSyncMessage(`Online sync paused: ${result.errorMessage}`);
+        return;
+      }
 
       if (result.syncedCount > 0 || result.failedCount > 0) {
         setSyncMessage(
@@ -948,107 +955,108 @@ export function HelperDashboardScreen({
                 <>
                   {filteredHelpRequests.map((request) => (
                     <View key={request.id} style={styles.card}>
-                    <View style={styles.requestTopRow}>
-                      <View style={styles.requestTopTextWrap}>
-                        <Text style={styles.meta}>
-                          {formatWhen(request.created_at)}
-                        </Text>
-                        <Text style={styles.cardTitle}>
-                          {request.client_name?.trim() || "Client"}
-                        </Text>
-                        <Text style={styles.meta}>{request.message}</Text>
-                      </View>
+                      <View style={styles.requestTopRow}>
+                        <View style={styles.requestTopTextWrap}>
+                          <Text style={styles.meta}>
+                            {formatWhen(request.created_at)}
+                          </Text>
+                          <Text style={styles.cardTitle}>
+                            {request.client_name?.trim() || "Client"}
+                          </Text>
+                          <Text style={styles.meta}>{request.message}</Text>
+                        </View>
 
-                      <View style={styles.statusControlWrap}>
-                        <Text style={styles.statusLabel}>Status</Text>
-                        {request.status === "resolved" ? (
-                          <View style={styles.statusReadonlyChip}>
-                            <Text style={styles.statusReadonlyText}>
-                              Resolved
-                            </Text>
-                          </View>
-                        ) : Platform.OS === "ios" ? (
-                          <Pressable
-                            style={styles.statusPickerButton}
-                            disabled={updatingRequestId === request.id}
-                            onPress={() => openStatusSelector(request)}
-                          >
-                            <Text style={styles.statusPickerButtonText}>
-                              {getStatusLabel(request.status)}
-                            </Text>
-                            <Ionicons
-                              name="chevron-down"
-                              size={14}
-                              color="#FFFFFF"
-                            />
-                          </Pressable>
-                        ) : (
-                          <View style={styles.statusPickerContainer}>
-                            <Picker
-                              mode="dropdown"
-                              selectedValue={request.status}
-                              enabled={updatingRequestId !== request.id}
-                              onValueChange={(value) => {
-                                const next = String(
-                                  value ?? "",
-                                ) as RequestStatus;
-                                if (!next || next === request.status) {
-                                  return;
-                                }
-
-                                void handleUpdateRequestStatus(request, next);
-                              }}
-                              style={styles.statusPicker}
-                              dropdownIconColor="#FFFFFF"
+                        <View style={styles.statusControlWrap}>
+                          <Text style={styles.statusLabel}>Status</Text>
+                          {request.status === "resolved" ? (
+                            <View style={styles.statusReadonlyChip}>
+                              <Text style={styles.statusReadonlyText}>
+                                Resolved
+                              </Text>
+                            </View>
+                          ) : Platform.OS === "ios" ? (
+                            <Pressable
+                              style={styles.statusPickerButton}
+                              disabled={updatingRequestId === request.id}
+                              onPress={() => openStatusSelector(request)}
                             >
-                              {statusOptions.map((option) => (
-                                <Picker.Item
-                                  key={option.value}
-                                  label={option.label}
-                                  value={option.value}
-                                  color="#111827"
-                                />
-                              ))}
-                            </Picker>
-                          </View>
-                        )}
+                              <Text style={styles.statusPickerButtonText}>
+                                {getStatusLabel(request.status)}
+                              </Text>
+                              <Ionicons
+                                name="chevron-down"
+                                size={14}
+                                color="#FFFFFF"
+                              />
+                            </Pressable>
+                          ) : (
+                            <View style={styles.statusPickerContainer}>
+                              <Picker
+                                mode="dropdown"
+                                selectedValue={request.status}
+                                enabled={updatingRequestId !== request.id}
+                                onValueChange={(value) => {
+                                  const next = String(
+                                    value ?? "",
+                                  ) as RequestStatus;
+                                  if (!next || next === request.status) {
+                                    return;
+                                  }
+
+                                  void handleUpdateRequestStatus(request, next);
+                                }}
+                                style={styles.statusPicker}
+                                dropdownIconColor="#FFFFFF"
+                              >
+                                {statusOptions.map((option) => (
+                                  <Picker.Item
+                                    key={option.value}
+                                    label={option.label}
+                                    value={option.value}
+                                    color="#111827"
+                                  />
+                                ))}
+                              </Picker>
+                            </View>
+                          )}
+                        </View>
                       </View>
-                    </View>
 
-                    <Text style={styles.meta}>
-                      Phone: {request.requester_phone?.trim() || "Not provided"}
-                    </Text>
-                    <Text style={styles.meta}>
-                      NGO: {request.target_ngo_name?.trim() || "Not assigned"}
-                    </Text>
-                    <Text style={styles.meta}>
-                      Area: {request.target_state ?? "-"} /{" "}
-                      {request.target_district ?? "-"} /{" "}
-                      {request.target_city ?? "-"}
-                    </Text>
-                    <Text style={styles.meta}>
-                      Coordinates:{" "}
-                      {Number.isFinite(request.lat) &&
-                      Number.isFinite(request.lng)
-                        ? `${request.lat.toFixed(5)}, ${request.lng.toFixed(5)}`
-                        : "Not available"}
-                    </Text>
+                      <Text style={styles.meta}>
+                        Phone:{" "}
+                        {request.requester_phone?.trim() || "Not provided"}
+                      </Text>
+                      <Text style={styles.meta}>
+                        NGO: {request.target_ngo_name?.trim() || "Not assigned"}
+                      </Text>
+                      <Text style={styles.meta}>
+                        Area: {request.target_state ?? "-"} /{" "}
+                        {request.target_district ?? "-"} /{" "}
+                        {request.target_city ?? "-"}
+                      </Text>
+                      <Text style={styles.meta}>
+                        Coordinates:{" "}
+                        {Number.isFinite(request.lat) &&
+                        Number.isFinite(request.lng)
+                          ? `${request.lat.toFixed(5)}, ${request.lng.toFixed(5)}`
+                          : "Not available"}
+                      </Text>
 
-                    {request.status === "in_progress" ? (
-                      <Pressable
-                        style={styles.secondaryButton}
-                        disabled={updatingRequestId === request.id}
-                        onPress={() => {
-                          void handleRequestNgoResolve(request);
-                        }}
-                      >
-                        <Text style={styles.secondaryButtonText}>
-                          {updatingRequestId === request.id
-                            ? "Sending..."
-                            : "Request NGO Resolve"}
-                        </Text>
-                      </Pressable>
-                    ) : null}
+                      {request.status === "in_progress" ? (
+                        <Pressable
+                          style={styles.secondaryButton}
+                          disabled={updatingRequestId === request.id}
+                          onPress={() => {
+                            void handleRequestNgoResolve(request);
+                          }}
+                        >
+                          <Text style={styles.secondaryButtonText}>
+                            {updatingRequestId === request.id
+                              ? "Sending..."
+                              : "Request NGO Resolve"}
+                          </Text>
+                        </Pressable>
+                      ) : null}
                     </View>
                   ))}
 

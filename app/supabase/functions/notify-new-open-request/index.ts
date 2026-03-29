@@ -15,6 +15,8 @@ type OpenRequestPayload = {
   id: string;
   message: string | null;
   target_ngo_name: string | null;
+  target_state: string | null;
+  target_district: string | null;
   target_city: string | null;
 };
 
@@ -58,11 +60,60 @@ Deno.serve(async (req: Request) => {
     },
   });
 
+  let ngoDirectoryQuery = supabase
+    .from("ngo_directory")
+    .select("id")
+    .eq("is_active", true);
+
+  const targetNgoName = payload.target_ngo_name?.trim();
+  const targetState = payload.target_state?.trim();
+  const targetDistrict = payload.target_district?.trim();
+  const targetCity = payload.target_city?.trim();
+
+  if (targetNgoName) {
+    ngoDirectoryQuery = ngoDirectoryQuery.eq("name", targetNgoName);
+  }
+
+  if (targetState) {
+    ngoDirectoryQuery = ngoDirectoryQuery.eq("state", targetState);
+  }
+
+  if (targetDistrict) {
+    ngoDirectoryQuery = ngoDirectoryQuery.eq("district", targetDistrict);
+  }
+
+  if (targetCity) {
+    ngoDirectoryQuery = ngoDirectoryQuery.eq("city", targetCity);
+  }
+
+  const { data: ngoRows, error: ngoDirectoryError } = await ngoDirectoryQuery;
+  if (ngoDirectoryError) {
+    return new Response(`NGO lookup failed: ${ngoDirectoryError.message}`, {
+      status: 500,
+    });
+  }
+
+  const ngoIds = ((ngoRows ?? []) as Array<{ id: string }>)
+    .map((row) => row.id)
+    .filter((id) => Boolean(id));
+
+  if (ngoIds.length === 0) {
+    return Response.json(
+      {
+        sent: 0,
+        reason: "no_matching_ngo_for_request",
+        requestId: payload.id,
+      },
+      { status: 200 },
+    );
+  }
+
   const { data: tokens, error: tokenError } = await supabase
     .from("device_push_tokens")
     .select("expo_push_token")
     .eq("role", "ngo")
-    .eq("is_active", true);
+    .eq("is_active", true)
+    .in("user_id", ngoIds);
 
   if (tokenError) {
     return new Response(`Token query failed: ${tokenError.message}`, {
@@ -98,6 +149,8 @@ Deno.serve(async (req: Request) => {
       type: "new_open_request",
       requestId: payload.id,
       targetNgoName: payload.target_ngo_name,
+      targetState: payload.target_state,
+      targetDistrict: payload.target_district,
       targetCity: payload.target_city,
     },
     channelId: "requests",

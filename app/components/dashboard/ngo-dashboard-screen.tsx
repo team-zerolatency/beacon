@@ -225,16 +225,15 @@ export function NgoDashboardScreen({
   );
 
   const averageResponseLabel = useMemo(() => {
-    const completed = helpRequests.filter(
-      (request) =>
-        request.status === "resolved" || request.status === "cancelled",
+    const completed = helpRequests.filter((request) =>
+      Boolean(request.resolved_at),
     );
 
     const durationsInHours: number[] = [];
 
     for (const request of completed) {
       const startedAt = new Date(request.created_at).getTime();
-      const resolvedAtRaw = request.resolved_at ?? request.updated_at;
+      const resolvedAtRaw = request.resolved_at;
 
       if (!resolvedAtRaw) {
         continue;

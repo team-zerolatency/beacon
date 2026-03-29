@@ -32,7 +32,19 @@ type QueueStorageState = {
   outbox: PackageOutboxEvent[];
 };
 
+type OfflineEventJournalEntry = {
+  packageId: string;
+  eventType: PackageEventType;
+  status: PackageLifecycleStatus;
+  payload: Record<string, unknown>;
+  sourceUserId: string | null;
+  idempotencyKey: string;
+  persistedAt: string;
+};
+
 const STORAGE_KEY = "beacon.package.queue.v1";
+const JOURNAL_STORAGE_KEY = "beacon.package.queue.journal.v1";
+const MAX_JOURNAL_ENTRIES = 500;
 
 function makeId(): string {
   return `${Date.now()}-${Math.floor(Math.random() * 1_000_000_000)}`;
@@ -62,6 +74,46 @@ async function saveState(state: QueueStorageState): Promise<void> {
   await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
+function parseJournal(raw: string | null): OfflineEventJournalEntry[] {
+  if (!raw) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as OfflineEventJournalEntry[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+async function persistOfflineEvent(
+  packageId: string,
+  entry: {
+    eventType: PackageEventType;
+    status: PackageLifecycleStatus;
+    payload: Record<string, unknown>;
+    sourceUserId: string | null;
+    idempotencyKey: string;
+  },
+): Promise<void> {
+  const raw = await AsyncStorage.getItem(JOURNAL_STORAGE_KEY);
+  const journal = parseJournal(raw);
+
+  journal.push({
+    packageId,
+    eventType: entry.eventType,
+    status: entry.status,
+    payload: entry.payload,
+    sourceUserId: entry.sourceUserId,
+    idempotencyKey: entry.idempotencyKey,
+    persistedAt: new Date().toISOString(),
+  });
+
+  const trimmed = journal.slice(-MAX_JOURNAL_ENTRIES);
+  await AsyncStorage.setItem(JOURNAL_STORAGE_KEY, JSON.stringify(trimmed));
+}
+
 export async function enqueuePackageEvent(input: {
   packageId: string;
   eventType: PackageEventType;
@@ -88,7 +140,7 @@ export async function enqueuePackageEvent(input: {
   state.outbox.push(event);
   await saveState(state);
 
-  // Also persist to SQLite for crash-safety on low-RAM Android
+  // Also persist to a bounded append-only journal for recovery diagnostics.
   try {
     await persistOfflineEvent(input.packageId, {
       eventType: input.eventType,

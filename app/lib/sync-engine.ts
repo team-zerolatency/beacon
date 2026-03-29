@@ -2,11 +2,16 @@ import {
   listPendingOutboxEvents,
   markOutboxEventSynced,
 } from "@/lib/offline-queue";
+import {
+  ensureAuthenticatedWithRefresh,
+  isTokenExpiredError,
+} from "@/lib/session-management";
 import { supabase } from "@/lib/supabase";
 
 export type SyncEngineResult = {
   syncedCount: number;
   failedCount: number;
+  errorMessage?: string;
 };
 
 export async function flushPackageOutbox(options?: {
@@ -20,6 +25,24 @@ export async function flushPackageOutbox(options?: {
   const pending = await listPendingOutboxEvents();
   let syncedCount = 0;
   let failedCount = 0;
+
+  if (pending.length === 0) {
+    return { syncedCount: 0, failedCount: 0 };
+  }
+
+  const authCheck = await ensureAuthenticatedWithRefresh();
+  if (!authCheck.success) {
+    for (const event of pending) {
+      options?.onEventFailed?.(event.id, authCheck.error ?? "auth_failed");
+    }
+
+    return {
+      syncedCount: 0,
+      failedCount: pending.length,
+      errorMessage:
+        authCheck.error ?? "Session expired before sync. Please sign in again.",
+    };
+  }
 
   for (const event of pending) {
     const { error } = await supabase.from("package_events").insert({
@@ -37,6 +60,18 @@ export async function flushPackageOutbox(options?: {
       syncedCount += 1;
       options?.onEventSynced?.(event.id);
       continue;
+    }
+
+    if (isTokenExpiredError(error)) {
+      failedCount += 1;
+      options?.onEventFailed?.(event.id, error);
+
+      // Stop early to avoid hammering backend with repeated token failures.
+      return {
+        syncedCount,
+        failedCount: pending.length - syncedCount,
+        errorMessage: "Session expired during sync. Please sign in again.",
+      };
     }
 
     failedCount += 1;

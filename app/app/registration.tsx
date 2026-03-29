@@ -9,8 +9,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  ScrollView,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -154,116 +154,121 @@ export default function RegistrationScreen() {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.card}>
-          <Text style={styles.kicker}>BEACON Registration</Text>
-          <Text style={styles.title}>Create Account</Text>
-          <Text style={styles.subtitle}>
-            We prefilled your email from login. Add your full name, choose a
-            role, and set a password.
-          </Text>
+            <Text style={styles.kicker}>BEACON Registration</Text>
+            <Text style={styles.title}>Create Account</Text>
+            <Text style={styles.subtitle}>
+              We prefilled your email from login. Add your full name, choose a
+              role, and set a password.
+            </Text>
 
-          <Text style={styles.roleLabel}>Choose your role</Text>
-          <View style={styles.roleRow}>
-            {([
-              { value: "client", label: "Client" },
-              { value: "helper", label: "Helper" },
-              { value: "ngo", label: "NGO" },
-            ] as const).map((roleOption) => {
-              const active = selectedRole === roleOption.value;
+            <Text style={styles.roleLabel}>Choose your role</Text>
+            <View style={styles.roleRow}>
+              {(
+                [
+                  { value: "client", label: "Client" },
+                  { value: "helper", label: "Helper" },
+                  { value: "ngo", label: "NGO" },
+                ] as const
+              ).map((roleOption) => {
+                const active = selectedRole === roleOption.value;
 
-              return (
-                <Pressable
-                  key={roleOption.value}
-                  onPress={() => setSelectedRole(roleOption.value)}
-                  style={[styles.roleChip, active ? styles.roleChipActive : null]}
-                >
-                  <Text
+                return (
+                  <Pressable
+                    key={roleOption.value}
+                    onPress={() => setSelectedRole(roleOption.value)}
                     style={[
-                      styles.roleChipText,
-                      active ? styles.roleChipTextActive : null,
+                      styles.roleChip,
+                      active ? styles.roleChipActive : null,
                     ]}
                   >
-                    {roleOption.label}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
+                    <Text
+                      style={[
+                        styles.roleChipText,
+                        active ? styles.roleChipTextActive : null,
+                      ]}
+                    >
+                      {roleOption.label}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
 
-          <TextInput
-            value={fullName}
-            onChangeText={setFullName}
-            multiline={false}
-            autoCorrect={false}
-            spellCheck={false}
-            textContentType="name"
-            autoComplete="name"
-            importantForAutofill="yes"
-            inputMode="text"
-            placeholder="Avery Thompson"
-            placeholderTextColor="#6b7280"
-            returnKeyType="next"
-            style={styles.input}
-          />
+            <TextInput
+              value={fullName}
+              onChangeText={setFullName}
+              multiline={false}
+              autoCorrect={false}
+              spellCheck={false}
+              textContentType="name"
+              autoComplete="name"
+              importantForAutofill="yes"
+              inputMode="text"
+              placeholder="Avery Thompson"
+              placeholderTextColor="#6b7280"
+              returnKeyType="next"
+              style={styles.input}
+            />
 
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            multiline={false}
-            autoCapitalize="none"
-            autoCorrect={false}
-            spellCheck={false}
-            textContentType="emailAddress"
-            autoComplete="email"
-            importantForAutofill="yes"
-            inputMode="email"
-            keyboardType="email-address"
-            placeholder="responder@beacon.org"
-            placeholderTextColor="#6b7280"
-            returnKeyType="next"
-            style={styles.input}
-          />
+            <TextInput
+              value={email}
+              onChangeText={setEmail}
+              multiline={false}
+              autoCapitalize="none"
+              autoCorrect={false}
+              spellCheck={false}
+              textContentType="emailAddress"
+              autoComplete="email"
+              importantForAutofill="yes"
+              inputMode="email"
+              keyboardType="email-address"
+              placeholder="responder@beacon.org"
+              placeholderTextColor="#6b7280"
+              returnKeyType="next"
+              style={styles.input}
+            />
 
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            multiline={false}
-            autoCorrect={false}
-            spellCheck={false}
-            textContentType="newPassword"
-            autoComplete="new-password"
-            importantForAutofill="yes"
-            inputMode="text"
-            keyboardType="default"
-            placeholder="Create password"
-            placeholderTextColor="#6b7280"
-            returnKeyType="done"
-            onSubmitEditing={() => {
-              void handleRegistration();
-            }}
-            style={styles.input}
-          />
+            <TextInput
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+              multiline={false}
+              autoCorrect={false}
+              spellCheck={false}
+              textContentType="newPassword"
+              autoComplete="new-password"
+              importantForAutofill="yes"
+              inputMode="text"
+              keyboardType="default"
+              placeholder="Create password"
+              placeholderTextColor="#6b7280"
+              returnKeyType="done"
+              onSubmitEditing={() => {
+                void handleRegistration();
+              }}
+              style={styles.input}
+            />
 
-          {error ? <Text style={styles.errorText}>{error}</Text> : null}
-          {message ? <Text style={styles.messageText}>{message}</Text> : null}
+            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+            {message ? <Text style={styles.messageText}>{message}</Text> : null}
 
-          <Pressable
-            onPress={handleRegistration}
-            disabled={loading}
-            style={({ pressed }) => [
-              styles.primaryButton,
-              pressed ? styles.primaryButtonPressed : null,
-              loading ? styles.buttonDisabled : null,
-            ]}
-          >
-            <Text style={styles.primaryButtonText}>
-              {loading ? "Creating account..." : "Create Account"}
-            </Text>
-          </Pressable>
+            <Pressable
+              onPress={handleRegistration}
+              disabled={loading}
+              style={({ pressed }) => [
+                styles.primaryButton,
+                pressed ? styles.primaryButtonPressed : null,
+                loading ? styles.buttonDisabled : null,
+              ]}
+            >
+              <Text style={styles.primaryButtonText}>
+                {loading ? "Creating account..." : "Create Account"}
+              </Text>
+            </Pressable>
 
-          <Link href="/login" style={styles.linkText}>
-            Already registered? Back to login
-          </Link>
+            <Link href="/login" style={styles.linkText}>
+              Already registered? Back to login
+            </Link>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

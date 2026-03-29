@@ -107,6 +107,8 @@ begin
       'id', new.id,
       'message', new.message,
       'target_ngo_name', new.target_ngo_name,
+      'target_state', new.target_state,
+      'target_district', new.target_district,
       'target_city', new.target_city
     )
   );
