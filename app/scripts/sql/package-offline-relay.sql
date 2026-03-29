@@ -633,13 +633,20 @@ begin
       as $helper_assignment$
       begin
         if public.current_user_type() = ''helper'' then
-          -- Helper can only modify requests already assigned to them and cannot reassign.
-          if old.assigned_helper_id is null or old.assigned_helper_id <> auth.uid() then
-            raise exception ''Helper can only modify requests assigned to them.'';
-          end if;
+          -- Helpers may claim an unassigned request by assigning themselves exactly once.
+          if old.assigned_helper_id is null then
+            if new.assigned_helper_id <> auth.uid() then
+              raise exception ''Helper can only claim unassigned requests for themselves.'';
+            end if;
+          else
+            -- Once assigned, only that helper can modify and cannot reassign.
+            if old.assigned_helper_id <> auth.uid() then
+              raise exception ''Helper can only modify requests assigned to them.'';
+            end if;
 
-          if new.assigned_helper_id is distinct from old.assigned_helper_id then
-            raise exception ''Helpers cannot change assignment.'';
+            if new.assigned_helper_id is distinct from old.assigned_helper_id then
+              raise exception ''Helpers cannot change assignment.'';
+            end if;
           end if;
         end if;
         return new;
@@ -665,7 +672,16 @@ begin
         auth.role() = ''authenticated''
         and (
           public.current_user_type() = ''ngo''
-          or (public.current_user_type() = ''helper'' and assigned_helper_id = auth.uid())
+          or (
+            public.current_user_type() = ''helper''
+            and (
+              assigned_helper_id = auth.uid()
+              or (
+                assigned_helper_id is null
+                and status in (''open'', ''in_progress'')
+              )
+            )
+          )
         )
       )
     ';
@@ -679,7 +695,10 @@ begin
         auth.role() = ''authenticated''
         and (
           public.current_user_type() = ''ngo''
-          or (public.current_user_type() = ''helper'' and assigned_helper_id = auth.uid())
+          or (
+            public.current_user_type() = ''helper''
+            and (assigned_helper_id = auth.uid() or assigned_helper_id is null)
+          )
         )
       )
       with check (

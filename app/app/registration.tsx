@@ -1,3 +1,8 @@
+import {
+  clearPendingRegistration,
+  getPendingRegistration,
+} from "@/lib/pending-registration";
+import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 import { Link, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
@@ -10,11 +15,6 @@ import {
   TextInput,
   View,
 } from "react-native";
-import {
-  clearPendingRegistration,
-  getPendingRegistration,
-} from "@/lib/pending-registration";
-import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 
 export default function RegistrationScreen() {
   const router = useRouter();

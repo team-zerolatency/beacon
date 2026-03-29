@@ -1409,7 +1409,8 @@ export function ClientDashboardScreen({
   }
 
   async function cancelRequest(id: string) {
-    if (!supabase) {
+    const db = supabase;
+    if (!db) {
       return;
     }
 
@@ -1417,7 +1418,7 @@ export function ClientDashboardScreen({
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await db.auth.getUser();
 
     if (!user) {
       setCancelingRequestId(null);
@@ -1425,9 +1426,11 @@ export function ClientDashboardScreen({
       return;
     }
 
-    const { error: uErr } = await supabase
+    const { error: uErr } = await db
       .from("help_requests")
-      .delete()
+      .update({
+        status: "cancelled",
+      })
       .eq("id", id)
       .eq("client_id", user.id);
 
@@ -1448,7 +1451,8 @@ export function ClientDashboardScreen({
     requestId: string,
     isResolved: boolean,
   ) {
-    if (!supabase) {
+    const db = supabase;
+    if (!db) {
       return;
     }
 
@@ -1457,7 +1461,7 @@ export function ClientDashboardScreen({
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await db.auth.getUser();
 
     if (!user) {
       setVerifyingRequestLoading(false);
@@ -1476,7 +1480,7 @@ export function ClientDashboardScreen({
 
     if (isResolved) {
       // Client confirms resolution - mark as verified
-      const { error: verifyErr } = await supabase
+      const { error: verifyErr } = await db
         .from("help_requests")
         .update({
           verification_status: "verified",
@@ -1541,7 +1545,7 @@ export function ClientDashboardScreen({
     }
 
     // Client rejects resolution - revert to "in_progress" and notify NGO
-    const { error: uErr } = await supabase
+    const { error: uErr } = await db
       .from("help_requests")
       .update({
         status: "in_progress",
@@ -1556,7 +1560,7 @@ export function ClientDashboardScreen({
 
     if (uErr) {
       if (hasMissingVerificationColumn(uErr.message)) {
-        const { error: fallbackErr } = await supabase
+        const { error: fallbackErr } = await db
           .from("help_requests")
           .update({ status: "in_progress" })
           .eq("id", requestId)
@@ -1582,7 +1586,7 @@ export function ClientDashboardScreen({
       const ngoName = req.target_ngo_name ?? "NGO";
       const notificationMsg = `Client rejected resolution for request ${requestId.slice(0, 8)}`;
 
-      await supabase.from("notifications").insert({
+      await db.from("notifications").insert({
         ngo_name: ngoName,
         message: notificationMsg,
         request_id: requestId,

@@ -1,3 +1,6 @@
+import { fetchMe } from "@/lib/auth";
+import { setPendingRegistration } from "@/lib/pending-registration";
+import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import {
@@ -10,9 +13,6 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { fetchMe } from "@/lib/auth";
-import { setPendingRegistration } from "@/lib/pending-registration";
-import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 
 export default function LoginScreen() {
   const router = useRouter();
